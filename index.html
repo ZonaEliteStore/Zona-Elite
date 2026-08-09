@@ -982,7 +982,7 @@
             mensaje += `👤 *Cliente:* ${nombreCliente}%0A`;
             mensaje += `💳 *Método de Pago:* ${metodoPago}%0A`;
             mensaje += `🔢 *Referencia:* ${referencia}%0A%0A`;
-            mensaje += `🛒 *PRODUCTOS (DESGLOSADOS):*%0A`;
+            mensaje += `🛒 *PEDIDO:*%0A`;
 
             let sumaUsd = 0;
             let sumaBs = 0;
@@ -1004,14 +1004,14 @@
                     let m = document.getElementById("login-metodo-codm")?.value || "";
                     let u = document.getElementById("login-usuario-codm")?.value || "";
                     let p = document.getElementById("login-pass-codm")?.value || "";
-                    mensaje += `🔐 *CODM Via:* ${m} | *Usr:* ${u} | *Clave:* ${p}%0A`;
+                    mensaje += `🔐 *CODM ACCESO:* ${m} | *Correo:* ${u} | *Contraseña:* ${p}%0A`;
                 } else if (tipo === 'freefire' || tipo === 'pubg' || tipo === 'bloodstrike') {
                     let uid = document.getElementById(`login-uid-${tipo}`)?.value || "";
                     mensaje += `🆔 *UID:* ${uid}%0A`;
                 } else if (tipo === 'roblox' || tipo === 'tiktok') {
                     let u = document.getElementById(`login-usuario-${tipo}`)?.value || "";
                     let p = document.getElementById(`login-pass-${tipo}`)?.value || "";
-                    mensaje += `👤 *Usr:* ${u} | *Clave:* ${p}%0A`;
+                    mensaje += `👤 *Correo:* ${u} | *Contraseña:* ${p}%0A`;
                 } else if (tipo === 'royale' || tipo === 'clash' || tipo === 'zinli') {
                     let c = document.getElementById(`login-correo-${tipo}`)?.value || "";
                     mensaje += `📧 *Correo:* ${c}%0A`;
