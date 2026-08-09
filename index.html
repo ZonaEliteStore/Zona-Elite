@@ -925,7 +925,16 @@
                                 <select id="login-metodo-codm"><option value="Activision">Activision</option><option value="Facebook">Facebook</option><option value="Google">Google</option></select>
                             </div>
                             <div class="input-container"><label>Correo / Teléfono:</label><input type="text" id="login-usuario-codm" placeholder="Correo o Teléfono"></div>
-                            <div class="input-container"><label>Contraseña:</label><input type="password" id="login-pass-codm" placeholder="Contraseña"></div>
+                            <div class="input-container">
+    <label>Contraseña:</label>
+    <div style="position: relative;">
+        <input type="password" id="login-pass-codm" placeholder="Contraseña" style="padding-right: 35px;">
+        <button type="button" onclick="alternarPassword('login-pass-codm', this)" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 0.9rem;">
+            <i class="fa-solid fa-eye"></i>
+        </button>
+    </div>
+</div>
+
                         </div>
                     `;
                 } else if (tipo === 'freefire' || tipo === 'pubg' || tipo === 'bloodstrike') {
@@ -943,7 +952,16 @@
                         <div style="border-bottom:1px solid #334155; padding-bottom:10px; margin-bottom:10px;">
                             <b style="color:#38bdf8; font-size:0.9rem;">${nombreServicio}</b>
                             <div class="input-container" style="margin-top:6px;"><label>Nombre dentro de la plataforma (Usuario):</label><input type="text" id="login-usuario-${tipo}" placeholder="Usuario"></div>
-                            <div class="input-container"><label>Contraseña:</label><input type="password" id="login-pass-${tipo}" placeholder="Contraseña"></div>
+                            <div class="input-container">
+    <label>Contraseña:</label>
+    <div style="position: relative;">
+        <input type="password" id="login-pass-roblox" placeholder="Contraseña" style="padding-right: 35px;">
+        <button type="button" onclick="alternarPassword('login-pass-roblox', this)" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 0.9rem;">
+            <i class="fa-solid fa-eye"></i>
+        </button>
+    </div>
+</div>
+
                         </div>
                     `;
                 } else if (tipo === 'royale' || tipo === 'clash' || tipo === 'zinli') {
@@ -1025,6 +1043,16 @@
             let numeroWhatsApp = "584226101249"; 
             window.open(`https://wa.me/${numeroWhatsApp}?text=${mensaje}`, '_blank');
         }
+            function alternarPassword(idInput, boton) {
+            let input = document.getElementById(idInput);
+            if (input.type === "password") {
+                input.type = "text";
+                boton.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+            } else {
+                input.type = "password";
+                boton.innerHTML = '<i class="fa-solid fa-eye"></i>';
+            }
+            }
     </script>
 </body>
 </html>
