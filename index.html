@@ -1,0 +1,1856 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZONA ÉLITE STORE | Elite Gaming Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #070b14;
+            --bg-surface: #0d1527;
+            --card-bg: rgba(17, 27, 48, 0.7);
+            --card-border: rgba(56, 189, 248, 0.15);
+            --card-border-hover: rgba(56, 189, 248, 0.6);
+            --accent-blue: #38bdf8;
+            --accent-cyan: #06b6d4;
+            --accent-gold: #fbbf24;
+            --text-main: #f8fafc;
+            --text-sec: #94a3b8;
+            --radius-main: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        body {
+            background-color: var(--bg-dark) !important;
+            color: var(--text-main) !important;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-bottom: 230px;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.04) 0%, transparent 40%);
+        }
+
+        /* HEADER PROFESIONAL */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 6%;
+            background: rgba(13, 21, 39, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(56, 189, 248, 0.12);
+            position: sticky;
+            top: 0;
+            z-index: 1100;
+        }
+
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo img { width: 44px; height: 44px; object-fit: cover; border-radius: 12px; border: 1.5px solid var(--accent-blue); box-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
+        .logo h1 { color: var(--text-main); font-size: 1.15rem; font-weight: 800; letter-spacing: 0.5px; }
+        .logo h1 span { color: var(--accent-blue); text-shadow: 0 0 12px rgba(56, 189, 248, 0.4); }
+
+        /* BUSCADOR ELEGANTE */
+        .search-container { padding: 18px 5% 0 5%; max-width: 1200px; margin: 0 auto; width: 100%; }
+        .search-box { position: relative; width: 100%; }
+        .search-box i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--accent-blue); font-size: 0.95rem; }
+        .search-box input { width: 100%; padding: 12px 16px 12px 42px; border-radius: 12px; border: 1px solid var(--card-border); background: var(--card-bg); backdrop-filter: blur(8px); color: white; font-size: 0.85rem; outline: none; transition: all 0.3s ease; }
+        .search-box input:focus { border-color: var(--accent-blue); box-shadow: 0 0 20px rgba(56, 189, 248, 0.2); background: rgba(17, 27, 48, 0.9); }
+
+        .hero { text-align: center; padding: 16px 20px 10px 20px; }
+        .hero h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; color: var(--text-main); letter-spacing: -0.5px; }
+        .hero p { color: var(--text-sec); font-size: 0.82rem; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; flex: 1; width: 100%; }
+        .section-title { margin: 20px 0 14px 0; font-size: 1.1rem; font-weight: 700; border-left: 3px solid var(--accent-blue); padding-left: 10px; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
+
+        /* GRID DE PRODUCTOS (GLASSMORPHISM) */
+        .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 20px; }
+        @media (min-width: 768px) { .products-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
+        @media (min-width: 1024px) { .products-grid { grid-template-columns: repeat(4, 1fr); } }
+
+        .product-card {
+            background: var(--card-bg) !important;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-main);
+            padding: 14px;
+            text-align: center;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            color: var(--text-main);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-card:hover { transform: translateY(-4px); border-color: var(--card-border-hover); box-shadow: 0 8px 30px rgba(56, 189, 248, 0.2); background: rgba(22, 35, 61, 0.85) !important; }
+        .product-card img { width: 60px; height: 60px; object-fit: cover; margin: 0 auto 10px auto; border-radius: 12px; border: 1px solid var(--card-border-hover); box-shadow: 0 0 10px rgba(0,0,0,0.5); }
+        .product-card h3 { font-size: 0.92rem; font-weight: 600; margin-bottom: 4px; color: var(--text-main); line-height: 1.3; }
+        .price-desde { font-size: 0.8rem; color: var(--accent-blue); font-weight: 700; margin-bottom: 10px; }
+
+        .select-btn, .add-to-cart-btn {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+            color: #070b14;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            width: 100%;
+            font-size: 0.78rem;
+            transition: all 0.3s ease;
+            margin-top: 6px;
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25);
+        }
+        .select-btn:hover, .add-to-cart-btn:hover { opacity: 0.9; transform: scale(1.02); box-shadow: 0 6px 18px rgba(56, 189, 248, 0.4); }
+
+        .badge-popular, .badge-oferta {
+            position: absolute; top: 10px; right: 10px;
+            background: linear-gradient(135deg, #ef4444, #dc2626); color: white;
+            font-size: 0.6rem; font-weight: 700;
+            padding: 3px 8px; border-radius: 6px; text-transform: uppercase;
+            box-shadow: 0 2px 8px rgba(239, 68, 68, 0.4);
+        }
+
+        .stock-pill {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: rgba(34, 197, 94, 0.12); color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3); font-size: 0.65rem; font-weight: 600;
+            padding: 3px 9px; border-radius: 20px; margin-bottom: 8px;
+        }
+
+        /* HEADER DEL JUEGO / CATALOGO */
+        .game-header-box {
+            background: var(--card-bg); backdrop-filter: blur(10px); border: 1px solid var(--card-border);
+            border-radius: var(--radius-main); padding: 18px; margin-bottom: 16px;
+            display: flex; flex-direction: column; gap: 12px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        .game-header-top { display: flex; align-items: center; gap: 14px; }
+        .game-header-top img { width: 55px; height: 55px; border-radius: 12px; border: 1px solid var(--card-border-hover); object-fit: cover; }
+        .game-header-info h3 { font-size: 1.05rem; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
+        .tag-instantaneo { background: rgba(56, 189, 248, 0.12); color: var(--accent-blue); border: 1px solid var(--card-border); font-size: 0.68rem; padding: 2px 8px; border-radius: 6px; font-weight: 600; }
+        .tag-seguro { color: #22c55e; font-size: 0.75rem; font-weight: 600; display: flex; align-items: center; gap: 5px; margin-top: 3px; }
+
+        .system-selector-box { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        .system-btn { background: rgba(15, 23, 42, 0.6); border: 1px solid #334155; border-radius: 12px; padding: 12px; color: var(--text-sec); font-weight: 600; font-size: 0.78rem; cursor: pointer; text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; gap: 4px; align-items: center; }
+        .system-btn.active { border-color: var(--accent-blue); color: white; background: rgba(56, 189, 248, 0.12); box-shadow: 0 0 15px rgba(56, 189, 248, 0.2); }
+        .system-btn span { font-size: 0.65rem; color: var(--accent-gold); }
+
+        .system-warning-banner { background: rgba(251, 191, 36, 0.08); border: 1px dashed rgba(251, 191, 36, 0.4); border-radius: 12px; padding: 12px; font-size: 0.78rem; color: #fde047; display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+
+        .steps-slider-wrapper { position: relative; overflow: hidden; width: 100%; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 12px; margin-top: 6px; }
+        .steps-track { display: flex; transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); width: 300%; }
+        .step-slide-item { width: 33.333%; flex-shrink: 0; padding: 0 6px; font-size: 0.8rem; color: var(--text-sec); line-height: 1.45; min-height: 55px; }
+        .step-slide-item b { color: var(--accent-blue); }
+        .steps-indicator { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 6px; }
+        .step-circle { width: 28px; height: 28px; border-radius: 50%; background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; color: var(--text-sec); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; }
+        .step-circle.active { background: var(--accent-blue); border-color: var(--accent-blue); color: #070b14; box-shadow: 0 0 10px rgba(56, 189, 248, 0.5); }
+
+        .back-btn { background: rgba(51, 65, 85, 0.5); backdrop-filter: blur(8px); color: white; border: 1px solid var(--card-border); padding: 8px 14px; border-radius: 10px; cursor: pointer; font-weight: 600; margin-bottom: 14px; display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; transition: 0.3s; }
+        .back-btn:hover { background: rgba(71, 85, 105, 0.8); border-color: var(--accent-blue); }
+
+        /* TESTIMONIOS Y FAQ */
+        .testimonials-section { margin: 28px 0 18px 0; }
+        .testimonials-grid { display: flex; gap: 14px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
+        .testimonials-grid::-webkit-scrollbar { display: none; }
+        .testimonial-card { background: var(--card-bg); backdrop-filter: blur(10px); border: 1px solid var(--card-border); border-radius: var(--radius-main); padding: 14px; min-width: 260px; max-width: 260px; flex-shrink: 0; font-size: 0.78rem; color: var(--text-sec); line-height: 1.45; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .testimonial-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .testimonial-name { color: var(--text-main); font-weight: 700; }
+        .testimonial-stars { color: var(--accent-gold); font-size: 0.68rem; }
+
+        .faq-section { margin: 28px 0; }
+        .faq-item { background: var(--card-bg); backdrop-filter: blur(10px); border: 1px solid var(--card-border); border-radius: 12px; margin-bottom: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .faq-question { padding: 14px 16px; font-size: 0.85rem; color: var(--text-main); font-weight: 600; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: rgba(30, 41, 59, 0.4); transition: background 0.3s; }
+        .faq-question:hover { background: rgba(30, 41, 59, 0.8); }
+        .faq-question i { color: var(--accent-blue); transition: transform 0.3s ease; }
+        .faq-answer { padding: 0 16px; max-height: 0; overflow: hidden; font-size: 0.78rem; color: var(--text-sec); line-height: 1.5; transition: max-height 0.35s ease, padding 0.35s ease; }
+        .faq-item.active .faq-answer { padding: 10px 16px 14px 16px; max-height: 180px; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+
+        /* OVERLAYS Y MODALES */
+        .loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(7, 11, 20, 0.85); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 4000; flex-direction: column; gap: 14px; }
+        .spinner { width: 48px; height: 48px; border: 4px solid rgba(56, 189, 248, 0.15); border-top: 4px solid var(--accent-blue); border-radius: 50%; animation: spin 0.8s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .loading-text { color: var(--text-main); font-size: 0.88rem; font-weight: 600; letter-spacing: 0.3px; }
+
+        .copy-toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: #22c55e; color: white; padding: 9px 18px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; z-index: 6000; box-shadow: 0 8px 25px rgba(34, 197, 94, 0.4); opacity: 0; transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s; }
+        .copy-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+        .welcome-popup-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(7, 11, 20, 0.88); backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; z-index: 3000; padding: 15px; }
+        .welcome-popup-card { background: var(--card-bg); backdrop-filter: blur(16px); border: 1.5px solid var(--card-border-hover); border-radius: 20px; width: 100%; max-width: 390px; padding: 26px 22px; text-align: center; box-shadow: 0 25px 50px rgba(0,0,0,0.8); position: relative; }
+        .welcome-close-btn { position: absolute; top: 12px; right: 12px; background: rgba(51, 65, 85, 0.6); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; transition: 0.3s; }
+        .welcome-close-btn:hover { background: #ef4444; }
+        .welcome-icon-box { background: #25d366; width: 68px; height: 68px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px auto; color: white; font-size: 2.1rem; box-shadow: 0 0 25px rgba(37, 211, 102, 0.4); }
+        .welcome-pill { display: inline-block; background: rgba(37, 211, 102, 0.15); color: #25d366; border: 1px solid #25d366; padding: 4px 14px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; }
+        .welcome-join-btn { display: block; background: #25d366; color: white; padding: 12px; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 0.88rem; transition: all 0.3s ease; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.35); margin-bottom: 12px; }
+        .welcome-join-btn:hover { background: #1ebe57; transform: translateY(-2px); }
+        .welcome-later-btn { background: transparent; color: var(--text-sec); border: none; font-size: 0.8rem; cursor: pointer; font-weight: 600; transition: color 0.3s; }
+        .welcome-later-btn:hover { color: var(--text-main); }
+
+        /* POPUP DE ANUNCIO ESPECIAL CODM (5000 CP - $40) */
+        .codm-promo-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(7, 11, 20, 0.88); backdrop-filter: blur(12px); display: none; justify-content: center; align-items: center; z-index: 3500; padding: 15px; }
+        .codm-promo-card { background: var(--card-bg); backdrop-filter: blur(18px); border: 2px solid var(--accent-blue); border-radius: 22px; width: 100%; max-width: 400px; padding: 28px 22px; text-align: center; box-shadow: 0 0 40px rgba(56, 189, 248, 0.35); position: relative; }
+        .codm-promo-badge { background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan)); color: #070b14; font-size: 0.7rem; font-weight: 800; padding: 4px 12px; border-radius: 20px; text-transform: uppercase; display: inline-block; margin-bottom: 12px; box-shadow: 0 0 12px rgba(56, 189, 248, 0.4); }
+        .codm-promo-card img { width: 75px; height: 75px; object-fit: cover; border-radius: 16px; border: 1.5px solid var(--accent-blue); margin: 0 auto 12px auto; box-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
+        .codm-promo-card h3 { font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 6px; }
+        .codm-promo-card p { font-size: 0.82rem; color: var(--text-sec); margin-bottom: 16px; line-height: 1.45; }
+        .codm-promo-price-box { background: rgba(15, 23, 42, 0.9); border: 1px solid var(--card-border-hover); border-radius: 12px; padding: 12px; margin-bottom: 18px; }
+        .codm-promo-price-box .usd { font-size: 1.25rem; font-weight: 800; color: var(--accent-blue); }
+        .codm-promo-price-box .bs { font-size: 0.82rem; color: var(--text-sec); margin-top: 2px; }
+
+        /* COMPRAS RECIENTES & BOTÓN WHATSAPP */
+        .purchase-toast { 
+            position: fixed; bottom: 110px; left: 15px; 
+            background: rgba(13, 21, 39, 0.95); backdrop-filter: blur(12px); border: 1px solid var(--card-border-hover); 
+            border-radius: 14px; padding: 12px 16px; z-index: 1500; max-width: 300px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6); display: flex; align-items: center; gap: 12px; 
+            transition: bottom 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .toast-icon-game { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; border: 1px solid var(--card-border-hover); flex-shrink: 0; }
+        .toast-content { font-size: 0.75rem; color: var(--text-main); line-height: 1.35; }
+        .toast-verified { color: #22c55e; font-weight: 700; display: flex; align-items: center; gap: 5px; font-size: 0.7rem; margin-bottom: 2px; }
+
+        .whatsapp-float-btn { 
+            position: fixed; bottom: 110px; right: 15px; 
+            background: #25d366; color: white; width: 52px; height: 52px; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            font-size: 1.6rem; box-shadow: 0 6px 25px rgba(37, 211, 102, 0.5); z-index: 1500; cursor: pointer; 
+            transition: transform 0.3s ease, bottom 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s; 
+        }
+        .whatsapp-float-btn:hover { background: #1ebe57; transform: scale(1.08); }
+
+        .info-details-box { background: var(--card-bg); backdrop-filter: blur(10px); border: 1px solid var(--card-border); border-radius: var(--radius-main); padding: 20px; margin-top: 24px; margin-bottom: 30px; box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+        .info-details-box h4 { color: var(--accent-blue); font-size: 1rem; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; border-left: 3px solid var(--accent-blue); padding-left: 8px; }
+        .info-text { font-size: 0.82rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 12px; }
+
+        .tech-sheet { background: rgba(7, 11, 20, 0.6); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px; margin-top: 16px; }
+        .tech-row { display: flex; justify-content: space-between; font-size: 0.8rem; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .tech-row:last-child { border-bottom: none; }
+        .tech-label { color: var(--text-sec); }
+        .tech-val { color: #fff; font-weight: 600; text-align: right; }
+
+        .steps-container { display: flex; flex-direction: column; gap: 12px; margin-top: 16px; }
+        .step-card { background: rgba(7, 11, 20, 0.6); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px; display: flex; gap: 14px; align-items: flex-start; }
+        .step-number { background: var(--accent-blue); color: #070b14; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.82rem; flex-shrink: 0; box-shadow: 0 0 10px rgba(56, 189, 248, 0.4); }
+        .step-content h5 { color: var(--text-main); font-size: 0.88rem; font-weight: 700; margin-bottom: 3px; }
+        .step-content p { color: var(--text-sec); font-size: 0.78rem; line-height: 1.45; }
+
+        /* CHECKOUT Y FORMULARIOS */
+        .checkout-section-box { background: var(--card-bg); backdrop-filter: blur(12px); border: 1.5px solid var(--card-border-hover); border-radius: 20px; padding: 22px; margin-top: 22px; box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
+        .checkout-header-step { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 14px; margin-bottom: 18px; }
+        .step-badge-title { display: flex; align-items: center; gap: 12px; }
+        .step-num-blue { background: var(--accent-blue); color: #070b14; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.95rem; flex-shrink: 0; box-shadow: 0 0 12px rgba(56, 189, 248, 0.4); }
+        .step-tag-pill { background: rgba(30, 41, 59, 0.8); border: 1px solid var(--accent-blue); color: var(--accent-blue); padding: 5px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+
+        .access-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
+        .access-tabs.warzone-tabs { grid-template-columns: repeat(2, 1fr); }
+        .access-tab { background: rgba(15, 23, 42, 0.7); border: 1.5px solid #334155; border-radius: 10px; padding: 10px 6px; color: var(--text-sec); font-weight: 600; font-size: 0.75rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; text-align: center; transition: all 0.3s ease; }
+        .access-tab.active { border-color: var(--accent-blue); color: white; background: rgba(56, 189, 248, 0.12); box-shadow: 0 0 12px rgba(56, 189, 248, 0.25); }
+
+        .input-container { margin-bottom: 16px; text-align: left; }
+        .input-container label { font-size: 0.82rem; font-weight: 600; color: #cbd5e1; display: flex; align-items: center; gap: 7px; margin-bottom: 7px; }
+        .input-container label i { color: var(--accent-blue); }
+        .input-container input, .input-container select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid #334155; background: rgba(15, 23, 42, 0.8); color: white; font-size: 0.88rem; transition: all 0.3s ease; }
+        .input-container input:focus, .input-container select:focus { border-color: var(--accent-blue); outline: none; box-shadow: 0 0 15px rgba(56, 189, 248, 0.2); }
+
+        .ssl-security-box { background: rgba(15, 23, 42, 0.6); border: 1px solid var(--card-border); border-radius: 12px; padding: 14px; display: flex; gap: 12px; align-items: center; font-size: 0.78rem; color: var(--text-sec); margin: 16px 0; }
+        
+        .payment-info-box { background: rgba(15, 23, 42, 0.8); border: 1px solid var(--card-border-hover); padding: 16px; border-radius: 12px; margin-bottom: 14px; font-size: 0.85rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 12px; box-shadow: inset 0 2px 8px rgba(0,0,0,0.3); }
+        .payment-row-item { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 10px; }
+        .payment-row-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .payment-row-item b { color: var(--accent-blue); }
+
+        .copy-btn-box { background: var(--accent-blue); color: #070b14; border: none; padding: 6px 12px; border-radius: 8px; font-weight: 700; font-size: 0.72rem; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; flex-shrink: 0; transition: 0.3s; box-shadow: 0 2px 8px rgba(56, 189, 248, 0.3); }
+        .copy-btn-box:hover { background: var(--accent-cyan); transform: scale(1.03); }
+
+        .section-buttons { display: flex; gap: 12px; margin-top: 18px; }
+        .section-buttons button { flex: 1; padding: 13px; border-radius: 12px; font-weight: 700; cursor: pointer; border: none; font-size: 0.88rem; transition: all 0.3s ease; }
+        .btn-primary { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.35); }
+        .btn-primary:hover { opacity: 0.92; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5); }
+        .btn-secondary { background: rgba(51, 65, 85, 0.7); color: white; border: 1px solid #475569; }
+        .btn-secondary:hover { background: rgba(71, 85, 105, 0.9); }
+
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(7, 11, 20, 0.88); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 2000; padding: 15px; }
+        .modal-card { background: var(--card-bg); backdrop-filter: blur(16px); border: 1.5px solid var(--card-border-hover); border-radius: 20px; width: 100%; max-width: 420px; padding: 22px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+        .modal-card h3 { color: var(--accent-blue); font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .modal-items-list { max-height: 170px; overflow-y: auto; margin-bottom: 16px; border: 1px solid #334155; border-radius: 10px; padding: 10px; background: rgba(7, 11, 20, 0.7); }
+        .modal-item-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: #cbd5e1; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); gap: 10px; }
+        .modal-delete-btn { background: #ef4444; color: white; border: none; padding: 3px 8px; border-radius: 6px; cursor: pointer; font-size: 0.72rem; font-weight: 700; transition: 0.3s; }
+        .modal-delete-btn:hover { background: #dc2626; }
+        .modal-total-box { background: rgba(7, 11, 20, 0.8); border: 1px solid var(--card-border-hover); border-radius: 10px; padding: 12px; margin-bottom: 16px; text-align: right; }
+
+        /* BARRA INFERIOR DE CARRITO */
+        .bottom-cart-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(13, 21, 39, 0.92); backdrop-filter: blur(16px); border-top: 1.5px solid var(--card-border-hover); padding: 12px 5%; z-index: 1000; box-shadow: 0 -8px 30px rgba(0,0,0,0.7); }
+        .cart-container-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 12px; max-width: 1200px; margin: 0 auto; align-items: center; }
+        @media (max-width: 768px) { .cart-container-grid { grid-template-columns: 1fr; } body { padding-bottom: 110px; } }
+        .cart-items-list { max-height: 75px; overflow-y: auto; border-right: 1px solid rgba(255,255,255,0.08); padding-right: 8px; }
+        @media (max-width: 768px) { .cart-items-list { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding-right: 0; padding-bottom: 6px; } }
+        .cart-item-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; margin-bottom: 4px; color: #cbd5e1; gap: 8px; }
+        .delete-btn { background: #ef4444; color: white; border: none; padding: 2px 6px; border-radius: 4px; cursor: pointer; font-size: 0.68rem; font-weight: 700; }
+        .checkout-btn { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; border: none; padding: 10px 14px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 0.85rem; width: 100%; margin-top: 6px; box-shadow: 0 4px 15px rgba(34, 197, 94, 0.35); transition: 0.3s; }
+        .checkout-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(34, 197, 94, 0.5); }
+
+        .footer { background: rgba(13, 21, 39, 0.9); border-top: 1px solid rgba(255,255,255,0.06); text-align: center; padding: 18px; margin-top: auto; }
+        .footer p { font-size: 0.82rem; color: var(--text-sec); }
+    </style>
+</head>
+<body>
+
+    <!-- ESTADO DE CARGA VISUAL (SPINNER) -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <div class="loading-text" id="loading-message">Procesando solicitud...</div>
+    </div>
+
+    <!-- TOAST DE COPIADO AL PORTAPAPELES -->
+    <div id="copy-toast" class="copy-toast"><i class="fa-solid fa-check"></i> ¡Copiado al portapapeles!</div>
+
+    <!-- POPUP DE ANUNCIO ESPECIAL CODM (5000 CP - $40) -->
+    <div id="codm-promo-modal" class="codm-promo-overlay">
+        <div class="codm-promo-card">
+            <span class="codm-promo-badge">⚡ ¡Oferta por Tiempo Ilimitado! ⚡</span>
+            <img src="https://i.postimg.cc/xJ54854n/Call-of-Duty-Mobile-Season-8-icon.png" alt="CODM Promo">
+            <h3>Super Paquete 5,000 CP</h3>
+            <p>¡Aprovecha esta promoción especial exclusiva para Call of Duty Mobile y recarga al mejor precio garantizado!</p>
+            <div class="codm-promo-price-box">
+                <div class="usd" id="promo-price-usd">$40.00 USD</div>
+                <div class="bs" id="promo-price-bs">Calculando en Bs...</div>
+            </div>
+            <div style="display: flex; gap: 10px; flex-direction: column;">
+                <button class="btn-primary" style="padding: 12px; border-radius: 12px; font-weight: 700; border: none; cursor: pointer; font-size: 0.88rem;" onclick="agregarPromoCodmAlCarrito()">Agregar al Carrito 🛒</button>
+                <button class="btn-secondary" style="padding: 10px; border-radius: 12px; font-weight: 600; border: none; cursor: pointer; font-size: 0.82rem;" onclick="cerrarPromoCodm()">No deseo realizar la compra</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- POPUP DE BIENVENIDA WHATSAPP -->
+    <div id="welcome-popup" class="welcome-popup-overlay">
+        <div class="welcome-popup-card">
+            <button class="welcome-close-btn" onclick="cerrarWelcomePopup()">✕</button>
+            <div class="welcome-icon-box"><i class="fa-brands fa-whatsapp"></i></div>
+            <span class="welcome-pill">¡Comunidad Oficial Zona Élite!</span>
+            <h3>¿Quieres entrar a nuestra comunidad?</h3>
+            <p>Únete al grupo oficial para enterarte de ofertas especiales, sorteos exclusivos de cuentas y códigos de descuento antes que nadie.</p>
+            <a href="https://chat.whatsapp.com/GqKuloCobxi90N5ybswtPC?s=cl&p=a&ilr=4" target="_blank" class="welcome-join-btn" onclick="cerrarWelcomePopup()">
+                <i class="fa-brands fa-whatsapp"></i> ¡Sí, quiero unirme a la comunidad!
+            </a>
+            <br>
+            <button class="welcome-later-btn" onclick="cerrarWelcomePopup()">Quizás más tarde</button>
+        </div>
+    </div>
+
+    <!-- MODAL DE SOPORTE WHATSAPP CON NOMBRE Y APELLIDO -->
+    <div id="modal-soporte" class="modal-overlay">
+        <div class="modal-card">
+            <h3><i class="fa-solid fa-headset" style="color:var(--accent-blue);"></i> Soporte Zona Élite</h3>
+            <p style="font-size:0.8rem; color:var(--text-sec); margin-bottom:16px;">Por favor, ingresa tu Nombre y Apellido para iniciar el chat de soporte:</p>
+            <div class="input-container">
+                <label><i class="fa-solid fa-user-pen"></i> Tu Nombre y Apellido:</label>
+                <input type="text" id="soporte-nombre-apellido" placeholder="Ej: Carlos Pérez">
+            </div>
+            <div class="section-buttons">
+                <button class="btn-secondary" onclick="cerrarModalSoporte()">Cancelar</button>
+                <button class="btn-primary" onclick="enviarSoporteWhatsApp()">Ir al Chat 📲</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NOTIFICACIÓN FLOTANTE DE COMPRAS RECIENTES -->
+    <div id="purchase-toast-box" class="purchase-toast" style="display: none;">
+        <img id="toast-img" src="" class="toast-icon-game" alt="Game">
+        <div class="toast-content">
+            <div class="toast-verified"><i class="fa-solid fa-circle-check"></i> COMPRA VERIFICADA</div>
+            <span id="toast-text"></span>
+        </div>
+    </div>
+
+    <!-- BOTÓN FLOTANTE DE SOPORTE WHATSAPP -->
+    <div onclick="abrirModalSoporte()" id="whatsapp-float-btn" class="whatsapp-float-btn">
+        <i class="fa-brands fa-whatsapp"></i>
+    </div>
+
+    <!-- LOGO REAL Y OFICIAL ACTUALIZADO -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="https://i.postimg.cc/mkvZC7cf/IMG-20260723-WA0011.jpg" alt="Logo Zona Élite">
+            <h1>ZONA ÉLITE <span>STORE</span> ⚡</h1>
+        </div>
+    </header>
+
+    <!-- BARRA DE BÚSQUEDA RÁPIDA -->
+    <div class="search-container">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="buscador-juegos" placeholder="Busca tu juego o servicio (ej: Free Fire, Warzone)..." oninput="filtrarJuegos()">
+        </div>
+    </div>
+
+    <section class="hero">
+        <h2>Recargas Instantáneas 🎮</h2>
+        <p>Selecciona tus paquetes y arma tu pedido con total seguridad.</p>
+    </section>
+
+    <main class="container">
+        
+        <!-- VISTA 1: CATEGORÍAS -->
+        <div id="vista-categorias">
+            <h3 class="section-title"><i class="fa-solid fa-gamepad"></i> Selecciona un Servicio o Juego</h3>
+            <div class="products-grid" id="grid-categorias">
+                
+                <div class="product-card" data-nombre="zinli" onclick="navegarConCarga(() => abrirCatalogo('zinli'))">
+                    <img src="https://i.postimg.cc/xJnZ9htd/images-(2).png" alt="Zinli">
+                    <div>
+                        <span class="stock-pill"><i class="fa-solid fa-circle" style="font-size:0.45rem;"></i> Disponible 24/7</span>
+                        <h3>Zinli 💳</h3>
+                    </div>
+                    <div class="price-desde" id="precio-desde-zinli">Calculando...</div>
+                    <button class="select-btn">Seleccionar Paquete →</button>
+                </div>
+
+                <div class="product-card" data-nombre="netflix" onclick="navegarConCarga(() => abrirCatalogo('netflix'))">
+                    <img src="https://i.postimg.cc/R64YvyXC/images-(4).jpg" alt="Netflix">
+                    <div>
+                        <span class="stock-pill"><i class="fa-solid fa-circle" style="font-size:0.45rem;"></i> Disponible 24/7</span>
+                        <h3>Netflix</h3>
+                    </div>
+                    <div class="price-desde" id="precio-desde-netflix">Calculando...</div>
+                    <button class="select-btn">Seleccionar Paquete →</button>
+                </div>
+
+                <div class="product-card" data-nombre="call of duty codm" onclick="navegarConCarga(() => abrirCatalogo('codm'))">
+                    <img src="https://i.postimg.cc/xJ54854n/Call-of-Duty-Mobile-Season-8-icon.png" alt="CODM">
+                    <div>
+                        <span class="stock-pill"><i class="fa-solid fa-circle" style="font-size:0.45rem;"></i> Disponible 24/7</span>
+                        <h3>Call of Duty</h3>
+                    </div>
+                    <div class="price-desde" id="precio-desde-codm">Calculando...</div>
+                    <button class="select-btn">Seleccionar Paquete →</button>
+                </div>
+
+                <!-- WARZONE CON TU IMAGEN OFICIAL -->
+                <div class="product-card" data-nombre="warzone call of duty warzone" onclick="navegarConCarga(() => abrirCatalogo('warzone'))">
+                    <img src="https://i.postimg.cc/FszFmyL0/images-(17).jpg" alt="Warzone">
+                    <div>
+                        <span class="stock-pill"><i class="fa-solid fa-circle" style="font-size:0.45rem;"></i> Disponible 24/7</span>
+                        <h3>Warzone</h3>
+                    </div>
+                    <div class="price-desde" id="precio-desde-warzone">Calculando...</div>
+                    <button class="select-btn">Seleccionar Paquete →</button>
+                </div>
+
+                <div class="product-card" data-nombre="free fire" onclick="navegarConCarga(() => abrirCatalogo('freefire'))">
+                    <img src="https://i.postimg.cc/S2dvRdv4/images.jpg" alt="Free Fire">
+                    <div>
+                        <span class="stock-pill"><i class="fa-solid fa-circle" style="font-size:0.45rem;"></i> Disponible 24/7</span>
+                        <h3>Free Fire</h3>
+                    </div>
+                    <div class="price-desde" id="precio-desde-freefire">Calculando...</div>
+                    <button class="select-btn">Seleccionar Paquete →</button>
+                </div>
+
+                <div class="product-card" data-nombre="pubg mobile" onclick="navegarConCarga(() => abrirCatalogo('pubg'))">
+                    <img src="https://i.postimg.cc/TLfsTFCY/images-(3).jpg" alt="PUBG">
+                    <div>
+                        <span class="stock-pill"><i class="fa-solid fa-circle" style="font-size:0.45rem;"></i> Disponible 24/7</span>
+                        <h3>PUBG Mobile</h3>
+                    </div>
+                    <div class="price-desde" id="precio-desde-pubg">Calculando...</div>
+                    <button class="select-btn">Seleccionar Paquete →</button>
+                </div>
+
+                <div class="product-card" data-nombre="mobile legends mlbb" onclick="navegarConCarga(() => abrirCatalogo('mlbb'))">
+                    <img src="https://i.postimg.cc/QC1yzDyQ/b-1752540448.png" alt="Mobile Legends">
+                    <div>
+                        <span class="stock-pill"><i class="fa-solid fa-circle" style="font-size:0.45rem;"></i> Disponible 24/7</span>
+                        <h3>Mobile Legends</h3>
+                    </div>
+                    <div class="price-desde" id="precio-desde-mlbb">Calculando...</div>
+                    <button class="select-btn">Seleccionar Paquete →</button>
+                </div>
+
+                <div class="product-card" data-nombre="delta force" onclick="navegarConCarga(() => abrirCatalogo('delta'))">
+                    <img src="https://i.postimg.cc/PqjM5ZNj/descarga.jpg" alt="Delta Force">
+                    <div>
+                        <span class="stock-pill"><i class="fa-solid fa-circle" style="font-size:0.45rem;"></i> Disponible 24/7</span>
+                        <h3>Delta Force</h3>
+                    </div>
+                    <div class="price-desde" id="precio-desde-delta">Calculando...</div>
+                    <button class="select-btn">Seleccionar Paquete →</button>
+                </div>
+
+                <div class="product-card" data-nombre="arena breakout" onclick="navegarConCarga(() => abrirCatalogo('arena'))">
+                    <img src="https://i.postimg.cc/q7w2B59G/arena-breakout-bonos.webp" alt="Arena Breakout">
+                    <div>
+                        <span class="stock-pill"><i class="fa-solid fa-circle" style="font-size:0.45rem;"></i> Disponible 24/7</span>
+                        <h3>Arena Breakout</h3>
+                    </div>
+                    <div class="price-desde" id="precio-desde-arena">Calculando...</div>
+                    <button class="select-btn">Seleccionar Paquete →</button>
+                </div>
+
+                <div class="product-card" data-nombre="roblox" onclick="navegarConCarga(() => abrirCatalogo('roblox'))">
+                    <img src="https://i.postimg.cc/ygsG7tv8/images.png" alt="Roblox">
+                    <div>
+                        <span class="stock-pill"><i class="fa-solid fa-circle" style="font-size:0.45rem;"></i> Disponible 24/7</span>
+                        <h3>Roblox</h3>
+                    </div>
+                    <div class="price-desde" id="precio-desde-roblox">Calculando...</div>
+                    <button class="select-btn">Seleccionar Paquete →</button>
+                </div>
+
+                <div class="product-card" data-nombre="tiktok coins" onclick="navegarConCarga(() => abrirCatalogo('tiktok'))">
+                    <img src="https://i.postimg.cc/bDp5qW3d/images-(1).png" alt="TikTok">
+                    <div>
+                        <span class="stock-pill"><i class="fa-solid fa-circle" style="font-size:0.45rem;"></i> Disponible 24/7</span>
+                        <h3>TikTok Coins</h3>
+                    </div>
+                    <div class="price-desde" id="precio-desde-tiktok">Calculando...</div>
+                    <button class="select-btn">Seleccionar Paquete →</button>
+                </div>
+
+                <div class="product-card" data-nombre="clash royale" onclick="navegarConCarga(() => abrirCatalogo('royale'))">
+                    <img src="https://i.postimg.cc/N9BnQSpF/images-(2).jpg" alt="Clash Royale">
+                    <div>
+                        <span class="stock-pill"><i class="fa-solid fa-circle" style="font-size:0.45rem;"></i> Disponible 24/7</span>
+                        <h3>Clash Royale</h3>
+                    </div>
+                    <div class="price-desde" id="precio-desde-royale">Calculando...</div>
+                    <button class="select-btn">Seleccionar Paquete →</button>
+                </div>
+
+                <div class="product-card" data-nombre="clash of clans" onclick="navegarConCarga(() => abrirCatalogo('clash'))">
+                    <img src="https://i.postimg.cc/YGMPtZb9/images-(1).jpg" alt="Clash of Clans">
+                    <div>
+                        <span class="stock-pill"><i class="fa-solid fa-circle" style="font-size:0.45rem;"></i> Disponible 24/7</span>
+                        <h3>Clash of Clans</h3>
+                    </div>
+                    <div class="price-desde" id="precio-desde-clash">Calculando...</div>
+                    <button class="select-btn">Seleccionar Paquete →</button>
+                </div>
+
+                <div class="product-card" data-nombre="blood strike" onclick="navegarConCarga(() => abrirCatalogo('bloodstrike'))">
+                    <img src="https://i.postimg.cc/HcdNTRBp/images-(5).jpg" alt="Blood Strike">
+                    <div>
+                        <span class="stock-pill"><i class="fa-solid fa-circle" style="font-size:0.45rem;"></i> Disponible 24/7</span>
+                        <h3>Blood Strike</h3>
+                    </div>
+                    <div class="price-desde" id="precio-desde-bloodstrike">Calculando...</div>
+                    <button class="select-btn">Seleccionar Paquete →</button>
+                </div>
+
+            </div>
+
+            <!-- TESTIMONIOS -->
+            <div class="testimonials-section">
+                <h3 class="section-title"><i class="fa-solid fa-star"></i> Opiniones de Gamers Reales</h3>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <span class="testimonial-name">Alejandro V.</span>
+                            <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p>"¡Demasiado rápido! Recargué mis CP de Call of Duty y en menos de 10 minutos ya los tenía en la cuenta. 100% recomendado."</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <span class="testimonial-name">Mariángel P.</span>
+                            <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p>"Excelente atención por WhatsApp y super confiables para comprar mis diamantes de Free Fire. ¡Los mejores de Venezuela!"</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-header">
+                            <span class="testimonial-name">Samuel T.</span>
+                            <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        </div>
+                        <p>"La calculadora de Zinli es una maravilla, te indica exacto lo que vas a pagar. Muy profesional la página."</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PREGUNTAS FRECUENTES (FAQ) -->
+            <div class="faq-section">
+                <h3 class="section-title"><i class="fa-solid fa-circle-question"></i> Preguntas Frecuentes</h3>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">¿Cuánto tiempo tardan en acreditar la recarga? <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="faq-answer">El tiempo promedio de acreditación es de 5 a 20 minutos una vez verificado el pago y los datos correctos de la cuenta.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">¿Es seguro dar los datos de acceso para Call of Duty o Warzone? <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="faq-answer">100% seguro. Tus credenciales se transmiten de forma cifrada mediante protocolo SSL y se utilizan estrictamente para cargar los recursos solicitados.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">¿Cuáles son los métodos de pago aceptados? <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="faq-answer">Aceptamos Pago Móvil (Banco de Venezuela), Transferencias bancarias nacionales y Binance Pay de manera directa.</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- VISTA 2: CATÁLOGO DE PAQUETES -->
+        <div id="vista-catalogo" style="display: none;">
+            <button class="back-btn" onclick="volverACategorias()"><i class="fa-solid fa-arrow-left"></i> Volver a Juegos</button>
+            
+            <div class="game-header-box">
+                <div class="game-header-top">
+                    <img id="game-header-img" src="" alt="Juego">
+                    <div class="game-header-info">
+                        <h3 id="game-header-title">Call of Duty <span class="tag-instantaneo" id="tag-modo-actual">⚡ Instantáneo</span></h3>
+                        <div class="tag-seguro"><i class="fa-solid fa-shield-halved"></i> Servicio verificado y garantizado</div>
+                    </div>
+                </div>
+
+                <!-- SELECTOR DE SISTEMA PARA CODM -->
+                <div id="selector-sistema-codm" style="display: none;">
+                    <div class="system-selector-box">
+                        <div class="system-btn active" id="btn-sistema-inmediato" onclick="cambiarSistemaCodm('inmediato')">
+                            <i class="fa-solid fa-bolt"></i> Sistema Inmediato
+                            <span>0 - 30 Minutos</span>
+                        </div>
+                        <div class="system-btn" id="btn-sistema-convencional" onclick="cambiarSistemaCodm('convencional')">
+                            <i class="fa-solid fa-clock"></i> Sistema Convencional
+                            <span>0 - 72 Horas (Económico)</span>
+                        </div>
+                    </div>
+                    <div class="system-warning-banner" id="banner-aviso-sistema">
+                        <i class="fa-solid fa-triangle-exclamation" style="font-size: 1rem;"></i>
+                        <span id="texto-aviso-sistema"><b>Sistema Inmediato:</b> Tu pedido será procesado y acreditado en un tiempo estimado de 0 a 30 minutos.</span>
+                    </div>
+                </div>
+                
+                <div class="steps-slider-wrapper" id="slider-wrapper">
+                    <div class="steps-track" id="steps-track">
+                        <div class="step-slide-item">
+                            <b>Paso 1:</b> <span id="slide-text-1">Recarga directa acreditada a tu cuenta de juego con entrega rápida y segura.</span>
+                        </div>
+                        <div class="step-slide-item">
+                            <b>Paso 2:</b> Revisa y selecciona con cuidado tus paquetes preferidos en la lista inferior y agrégalos al pedido.
+                        </div>
+                        <div class="step-slide-item">
+                            <b>Paso 3:</b> Realiza el pago, confirma tus datos de acceso o UID para procesar la entrega y listo.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="steps-indicator">
+                    <div class="step-circle active" onclick="irAPasoSlide(0)">1</div>
+                    <div class="step-circle" onclick="irAPasoSlide(1)">2</div>
+                    <div class="step-circle" onclick="irAPasoSlide(2)">3</div>
+                </div>
+            </div>
+
+            <h3 class="section-title"><i class="fa-solid fa-list-check"></i> Selecciona tu paquete de recarga</h3>
+            <div id="contenedor-paquetes" class="products-grid"></div>
+
+            <div class="info-details-box">
+                <h4><i class="fa-solid fa-circle-info"></i> Información General del Producto</h4>
+                <p class="info-text">Adquiere la versión oficial de forma directa y garantizada. Todos nuestros productos provienen de distribuidores oficiales, asegurando acreditaciones continuas y sin bloqueos.</p>
+                
+                <div id="nota-exclusiva-codm" style="display: none;">
+                    <p class="info-text"><b>Nota importante sobre CODM:</b> Las recargas <b>no son por ID</b>. Esto se debe a que Venezuela es un país restringido, por lo tanto <b>no aparece en la CODM Store</b>. Por esta razón, el proceso se realiza de forma segura mediante los datos de acceso de tu cuenta.</p>
+                </div>
+                <div id="nota-exclusiva-warzone" style="display: none;">
+                    <p class="info-text"><b>Nota importante sobre Warzone:</b> Las recargas de Puntos COD (CP) se procesan de forma segura indicando el correo y contraseña según la plataforma que utilices (Xbox, PlayStation, Steam ou Battle.net).</p>
+                </div>
+                <div id="nota-exclusiva-uid" style="display: none;">
+                    <p class="info-text"><b>Nota importante:</b> Este servicio se procesa de manera rápida y directa utilizando únicamente tu <b>ID de Usuario (UID)</b> y tu Nickname verificado en el juego.</p>
+                </div>
+                <div id="nota-exclusiva-mlbb" style="display: none;">
+                    <p class="info-text"><b>Nota importante sobre Mobile Legends:</b> Las recargas se procesan de forma inmediata indicando tu <b>ID de Usuario (UID)</b> y tu <b>Zona ID</b> (el número entre paréntesis que aparece en tu perfil).</p>
+                </div>
+
+                <h4 style="margin-top: 20px;"><i class="fa-solid fa-file-lines"></i> Ficha Técnica</h4>
+                <div class="tech-sheet">
+                    <div class="tech-row"><span class="tech-label">Categoría:</span><span class="tech-val">RECARGAS-DIGITALES</span></div>
+                    <div class="tech-row"><span class="tech-label">Formato de entrega:</span><span class="tech-val">Directo / Automático</span></div>
+                    <div class="tech-row"><span class="tech-label">Tiempo de Entrega:</span><span class="tech-val" style="color:#22c55e;" id="ficha-tiempo-entrega">Entre 5 a 30 minutos</span></div>
+                    <div class="tech-row"><span class="tech-label">Garantía:</span><span class="tech-val" style="color:#22c55e;">Vitalicia (100% Garantizado)</span></div>
+                </div>
+
+                <h4 style="margin-top: 20px;"><i class="fa-solid fa-list-check"></i> Guía de Compra Paso a Paso</h4>
+                <div class="steps-container">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h5>Seleccionar Paquete y Datos</h5>
+                            <p>Elige tu paquete, agrégalo al pedido e ingresa tus datos de acceso o jugador correspondientes.</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h5>Procesar el Pago</h5>
+                            <p>Selecciona tu método de pago preferido (Pago Móvil, Transferencia o Binance Pay).</p>
+                        </div>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h5>¡Recibe tu Acreditación!</h5>
+                            <p>Revisa tu cuenta de juego en el lapso correspondiente una vez validado el pago.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISTA 3: SECCIÓN DE PAGO -->
+        <div id="vista-pago" style="display: none;" class="checkout-section-box">
+            <div class="checkout-header-step">
+                <div class="step-badge-title">
+                    <div class="step-num-blue">1</div>
+                    <div>
+                        <h3 style="margin:0; font-size:1.05rem; border:none; padding:0;">Selecciona tu Método de Pago</h3>
+                        <p style="font-size:0.78rem; color:var(--text-sec); margin:0;">Elige cómo deseas realizar tu transferencia o pago.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-container">
+                <label><i class="fa-solid fa-wallet"></i> Método de Pago:</label>
+                <select id="metodo-pago" onchange="mostrarDatosPagoVertical()">
+                    <option value="Pago Móvil">Pago Móvil</option>
+                    <option value="Transferencia Bancaria">Transferencia Bancaria</option>
+                    <option value="Binance Pay">Binance Pay</option>
+                </select>
+            </div>
+
+            <div id="info-datos-pago-vertical" class="payment-info-box"></div>
+
+            <div class="input-container">
+                <label><i class="fa-solid fa-receipt"></i> Últimos 4 dígitos o Referencia de pago:</label>
+                <input type="text" id="nro-referencia" placeholder="Ej: 4589">
+            </div>
+
+            <div class="section-buttons">
+                <button class="btn-secondary" onclick="volverAlCatalogoOpciones()">Volver</button>
+                <button class="btn-primary" onclick="irAPasoDatosRecargaVertical()">Siguiente: Datos de Cuenta 🎮</button>
+            </div>
+        </div>
+
+        <!-- VISTA 4: SECCIÓN DE DATOS DE RECARGA -->
+        <div id="vista-datos-recarga" style="display: none;" class="checkout-section-box">
+            <div class="checkout-header-step">
+                <div class="step-badge-title">
+                    <div class="step-num-blue">2</div>
+                    <div>
+                        <h3 style="margin:0; font-size:1.05rem; border:none; padding:0;">Ingresa los datos de tu cuenta</h3>
+                        <p style="font-size:0.78rem; color:var(--text-sec); margin:0;">El sistema recuerda tus datos guardados. Puedes cambiarlos si deseas.</p>
+                    </div>
+                </div>
+                <div id="pill-metodo-activo" class="step-tag-pill">Activision</div>
+            </div>
+
+            <div style="border-bottom:1px solid rgba(255,255,255,0.08); padding-bottom:14px; margin-bottom:16px;">
+                <div class="input-container">
+                    <label><i class="fa-solid fa-user-pen"></i> Nombre y Apellido del Cliente:</label>
+                    <input type="text" id="cliente-nombre-apellido" placeholder="Ej: Carlos Pérez">
+                </div>
+            </div>
+
+            <div id="campos-recarga-vertical"></div>
+
+            <div class="ssl-security-box">
+                <i class="fa-solid fa-shield-halved" style="color:var(--accent-blue); font-size:1.2rem;"></i>
+                <span>Tus credenciales se transmiten con encriptación SSL y son utilizadas estrictamente para cargar los recursos.</span>
+            </div>
+
+            <div class="section-buttons">
+                <button class="btn-secondary" onclick="irAPasoPagoVertical()">Volver</button>
+                <button class="btn-primary" onclick="finalizarCompraWhatsApp()">Confirmar Pedido 📲</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- VENTANA EMERGENTE (MODAL DE CONFIRMACIÓN) -->
+    <div id="modal-confirmar-pedido" class="modal-overlay">
+        <div class="modal-card">
+            <h3><i class="fa-solid fa-basket-shopping"></i> Revisa tu Pedido</h3>
+            <p style="font-size: 0.78rem; color: var(--text-sec); margin-bottom: 12px;">Verifica los artículos seleccionados antes de proceder al pago:</p>
+            
+            <div id="modal-items-list" class="modal-items-list"></div>
+
+            <div class="modal-total-box">
+                <p style="font-size: 0.82rem; color: var(--text-sec);">Total a pagar:</p>
+                <h4 id="modal-total-bs-display" style="color: var(--accent-blue); font-size: 1.15rem; font-weight: 800;">0.00 Bs</h4>
+                <span id="modal-total-usd-display" style="font-size: 0.78rem; color: var(--text-sec);">$0.00 USD</span>
+            </div>
+
+            <div class="section-buttons">
+                <button class="btn-secondary" onclick="cerrarModalPedido()">Cerrar</button>
+                <button class="btn-primary" onclick="procedirAlPagoDesdeModal()">Continuar al Pago 💳</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2026 ZONA ÉLITE STORE - Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- CARRITO FIJO INFERIOR -->
+    <div id="bottom-cart-bar" class="bottom-cart-bar">
+        <div class="cart-container-grid">
+            
+            <div>
+                <h4 style="font-size: 0.82rem; margin-bottom: 3px; color: var(--accent-blue);"><i class="fa-solid fa-cart-shopping"></i> Tu Pedido Actual</h4>
+                <div id="cart-items" class="cart-items-list">
+                    <p style="font-size: 0.72rem; color: var(--text-sec);">El carrito está vacío.</p>
+                </div>
+            </div>
+
+            <div class="cart-summary-area">
+                <div id="total-acumulado-monedas" style="font-size: 0.78rem; color: var(--accent-blue); font-weight: 600;"></div>
+                <div style="font-size: 0.72rem; color: var(--text-sec);">Total USD: $<span id="cart-total-usd">0.00</span></div>
+                <div style="color: var(--accent-blue); font-size: 0.95rem; font-weight: 800;">Total Bs: <span id="cart-total-bs">0.00</span> Bs</div>
+                <button class="checkout-btn" onclick="abrirModalConfirmacion()">Confirmar Pedido 🛒</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const TASA_ZINLI = 980; 
+        let carrito = [];
+        let juegoActual = "";
+        let sistemaCodmActual = "inmediato";
+        let metodoAccesoCodm = "Activision";
+        let metodoAccesoWarzone = "Xbox";
+        let pasoActualSlide = 0;
+
+        const iconosMoneda = {
+            codm: "https://i.postimg.cc/ZRWVymPr/images-(10).jpg",
+            warzone: "https://i.postimg.cc/YC4SN62p/CODHQ-COD-Points-Bnet-VC-Product-Browsing-Card-1920x1080.jpg",
+            freefire: "https://i.postimg.cc/cLHS5gdS/images-(12).jpg",
+            pubg: "https://i.postimg.cc/dtNX3WKh/622259ad099daa47a363626ff388050a.jpg",
+            mlbb: "https://i.postimg.cc/9QqxMCpt/images-(13).jpg",
+            delta: "https://i.postimg.cc/PqjM5ZNj/descarga.jpg",
+            arena: "https://i.postimg.cc/q7w2B59G/arena-breakout-bonos.webp",
+            roblox: "https://i.postimg.cc/MTXf6K0B/il-1080x-N-6819700938-868m.jpg",
+            tiktok: "https://i.postimg.cc/d0551BXW/df0ad96b-1c95-4420-a0d4-6f54a1276a59-1000x1000-xsq1mp7STr-GHAJ5waxe14r-Mvj9MASPf-Uuan-Ce2FV.png",
+            royale: "https://i.postimg.cc/g073QBQH/1787320284682.png",
+            clash: "https://i.postimg.cc/g073QBQH/1787320284682.png",
+            bloodstrike: "https://i.postimg.cc/hjbPTXL9/IMG-20260821-095555.jpg",
+            zinli: "https://i.postimg.cc/xJnZ9htd/images-(2).png"
+        };
+
+        const datosJuegosInfo = {
+            codm: { titulo: "Call of Duty", img: "https://i.postimg.cc/xJ54854n/Call-of-Duty-Mobile-Season-8-icon.png", desc: "Recarga directa acreditada a tu cuenta de juego mediante datos de acceso." },
+            warzone: { titulo: "Warzone", img: "https://i.postimg.cc/FszFmyL0/images-(17).jpg", desc: "Puntos COD (CP) oficiales acreditados de forma directa y segura para Warzone." },
+            freefire: { titulo: "Free Fire", img: "https://i.postimg.cc/S2dvRdv4/images.jpg", desc: "Recarga rápida acreditada de forma directa mediante UID y Nickname." },
+            pubg: { titulo: "PUBG Mobile", img: "https://i.postimg.cc/TLfsTFCY/images-(3).jpg", desc: "Acreditación directa de UC mediante tu ID de Usuario (UID)." },
+            mlbb: { titulo: "Mobile Legends", img: "https://i.postimg.cc/QC1yzDyQ/b-1752540448.png", desc: "Recarga oficial acreditada mediante UID y Zona ID." },
+            delta: { titulo: "Delta Force", img: "https://i.postimg.cc/nzYmSw1k/images-(8).jpg", desc: "Delta Coins acreditadas directamente a tu cuenta." },
+            arena: { titulo: "Arena Breakout", img: "https://i.postimg.cc/YSQLjyZf/images-(9).jpg", desc: "Bonos y suministros oficiales acreditados por UID." },
+            roblox: { titulo: "Roblox", img: "https://i.postimg.cc/ygsG7tv8/images.png", desc: "Robux acreditados de forma segura mediante acceso a cuenta." },
+            tiktok: { titulo: "TikTok Coins", img: "https://i.postimg.cc/bDp5qW3d/images-(1).png", desc: "Monedas oficiales acreditadas directamente a tu perfil." },
+            royale: { titulo: "Clash Royale", img: "https://i.postimg.cc/N9BnQSpF/images-(2).jpg", desc: "Gemas acreditadas de forma segura y garantizada." },
+            clash: { titulo: "Clash of Clans", img: "https://i.postimg.cc/YGMPtZb9/images-(1).jpg", desc: "Gemas y recursos oficiales para tu aldea." },
+            bloodstrike: { titulo: "Blood Strike", img: "https://i.postimg.cc/HcdNTRBp/images-(5).jpg", desc: "Oro y pases oficiales acreditados mediante UID." },
+            zinli: { titulo: "Zinli 💳", img: "https://i.postimg.cc/xJnZ9htd/images-(2).png", desc: "Recarga de saldo internacional de forma rápida y segura." },
+            netflix: { titulo: "Netflix", img: "https://i.postimg.cc/R64YvyXC/images-(4).jpg", desc: "Pantallas oficiales con garantía total." }
+        };
+
+        const catalogos = {
+            codm: [
+                { nombre: "80 CP", moneda: 80, precio: 1.30, etiqueta: "" },
+                { nombre: "420 CP", moneda: 420, precio: 6.00, etiqueta: "popular" },
+                { nombre: "880 CP", moneda: 880, precio: 11.00, etiqueta: "" },
+                { nombre: "2400 CP", moneda: 2400, precio: 26.50, etiqueta: "oferta" },
+                { nombre: "5000 CP", moneda: 5000, precio: 49.00, etiqueta: "oferta" },
+                { nombre: "10800 CP", moneda: 10800, precio: 98.00, etiqueta: "oferta" },
+                { nombre: "Pase de Batalla", moneda: 1, precio: 3.50, etiqueta: "" },
+                { nombre: "Suministro Semanal", moneda: 1, precio: 1.40, etiqueta: "" },
+                { nombre: "Suministro Mensual", moneda: 1, precio: 5.50, etiqueta: "" }
+            ],
+            codm_convencional: [
+                { nombre: "420 CP (Convencional)", moneda: 420, precio: 5.00, etiqueta: "oferta" },
+                { nombre: "880 CP (Convencional)", moneda: 880, precio: 10.00, etiqueta: "popular" },
+                { nombre: "2400 CP (Convencional)", moneda: 2400, precio: 22.00, etiqueta: "oferta" },
+                { nombre: "5000 CP (Convencional)", moneda: 5000, precio: 42.00, etiqueta: "oferta" },
+                { nombre: "10800 CP (Convencional)", moneda: 10800, precio: 80.00, etiqueta: "oferta" }
+            ],
+            warzone: [
+                { nombre: "200 CP", moneda: 200, precio: 2.30, etiqueta: "" },
+                { nombre: "500 CP", moneda: 500, precio: 6.00, etiqueta: "" },
+                { nombre: "1,100 CP", moneda: 1100, precio: 11.00, etiqueta: "popular" },
+                { nombre: "2,400 CP", moneda: 2400, precio: 27.50, etiqueta: "oferta" },
+                { nombre: "5,000 CP", moneda: 5000, precio: 55.00, etiqueta: "oferta" },
+                { nombre: "9,500 CP", moneda: 9500, precio: 85.00, etiqueta: "oferta" },
+                { nombre: "13,000 CP", moneda: 13000, precio: 110.00, etiqueta: "oferta" }
+            ],
+            freefire: [
+                { nombre: "100 Diamantes", moneda: 100, precio: 1.10, etiqueta: "" },
+                { nombre: "310 Diamantes", moneda: 310, precio: 3.20, etiqueta: "popular" },
+                { nombre: "520 Diamantes", moneda: 520, precio: 5.50, etiqueta: "" },
+                { nombre: "1060 Diamantes", moneda: 1060, precio: 11.00, etiqueta: "oferta" },
+                { nombre: "2180 Diamantes", moneda: 2180, precio: 21.00, etiqueta: "oferta" },
+                { nombre: "5600 Diamantes", moneda: 5600, precio: 48.00, etiqueta: "oferta" },
+                { nombre: "Pase Booyah", moneda: 1, precio: 4.50, etiqueta: "" },
+                { nombre: "Membresía Semanal", moneda: 1, precio: 2.30, etiqueta: "" },
+                { nombre: "Membresía Mensual", moneda: 1, precio: 11.00, etiqueta: "" }
+            ],
+            pubg: [
+                { nombre: "60 UC", moneda: 60, precio: 1.20, etiqueta: "" },
+                { nombre: "325 UC", moneda: 325, precio: 5.50, etiqueta: "popular" },
+                { nombre: "660 UC", moneda: 660, precio: 11.00, etiqueta: "" },
+                { nombre: "1700 UC", moneda: 1700, precio: 24.00, etiqueta: "oferta" },
+                { nombre: "3850 UC", moneda: 3850, precio: 53.00, etiqueta: "oferta" },
+                { nombre: "8100 UC", moneda: 8100, precio: 96.00, etiqueta: "oferta" }
+            ],
+            mlbb: [
+                { nombre: "80 Diamantes", moneda: 80, precio: 1.80, etiqueta: "" },
+                { nombre: "172 Diamantes", moneda: 172, precio: 3.00, etiqueta: "popular" },
+                { nombre: "257 Diamantes", moneda: 257, precio: 4.50, etiqueta: "" },
+                { nombre: "706 Diamantes", moneda: 706, precio: 12.00, etiqueta: "oferta" },
+                { nombre: "2192 Diamantes", moneda: 2192, precio: 33.00, etiqueta: "oferta" },
+                { nombre: "3688 Diamantes", moneda: 3688, precio: 55.00, etiqueta: "oferta" },
+                { nombre: "Pase semanal", moneda: 1, precio: 2.20, etiqueta: "" },
+                { nombre: "Pase crepuscular", moneda: 1, precio: 11.00, etiqueta: "" }
+            ],
+            delta: [
+                { nombre: "60 Delta Coins", moneda: 60, precio: 1.20, etiqueta: "" },
+                { nombre: "300 Delta Coins", moneda: 300, precio: 5.50, etiqueta: "popular" },
+                { nombre: "420 Delta Coins", moneda: 420, precio: 7.70, etiqueta: "" },
+                { nombre: "680 Delta Coins", moneda: 680, precio: 11.00, etiqueta: "oferta" },
+                { nombre: "1280 Delta Coins", moneda: 1280, precio: 22.00, etiqueta: "oferta" },
+                { nombre: "Suministro Fision", moneda: 1, precio: 1.00, etiqueta: "" }
+            ],
+            arena: [
+                { nombre: "66 Bonus", moneda: 66, precio: 1.20, etiqueta: "" },
+                { nombre: "335 Bonus", moneda: 335, precio: 5.50, etiqueta: "popular" },
+                { nombre: "675 Bonus", moneda: 675, precio: 11.00, etiqueta: "" },
+                { nombre: "1680 Bonus", moneda: 1680, precio: 27.50, etiqueta: "oferta" },
+                { nombre: "3400 Bonus", moneda: 3400, precio: 54.00, etiqueta: "oferta" },
+                { nombre: "Estuche (30 Días)", moneda: 1, precio: 2.80, etiqueta: "" }
+            ],
+            roblox: [
+                { nombre: "40 Robux", moneda: 40, precio: 0.70, etiqueta: "" },
+                { nombre: "80 Robux", moneda: 80, precio: 1.20, etiqueta: "popular" },
+                { nombre: "400 Robux", moneda: 400, precio: 5.50, etiqueta: "" },
+                { nombre: "800 Robux", moneda: 800, precio: 11.00, etiqueta: "oferta" },
+                { nombre: "1700 Robux", moneda: 1700, precio: 22.00, etiqueta: "oferta" },
+                { nombre: "4500 Robux", moneda: 4500, precio: 55.00, etiqueta: "oferta" }
+            ],
+            tiktok: [
+                { nombre: "100 Monedas", moneda: 100, precio: 1.30, etiqueta: "" },
+                { nombre: "250 Monedas", moneda: 250, precio: 3.30, etiqueta: "popular" },
+                { nombre: "500 Monedas", moneda: 500, precio: 6.50, etiqueta: "" },
+                { nombre: "1000 Monedas", moneda: 1000, precio: 13.00, etiqueta: "oferta" },
+                { nombre: "2500 Monedas", moneda: 2500, precio: 32.00, etiqueta: "oferta" }
+            ],
+            royale: [
+                { nombre: "80 Gemas", moneda: 80, precio: 1.20, etiqueta: "" },
+                { nombre: "500 Gemas", moneda: 500, precio: 2.80, etiqueta: "popular" },
+                { nombre: "1200 Gemas", moneda: 1200, precio: 5.50, etiqueta: "" },
+                { nombre: "2500 Gemas", moneda: 2500, precio: 11.00, etiqueta: "oferta" },
+                { nombre: "6500 Gemas", moneda: 6500, precio: 27.50, etiqueta: "oferta" }
+            ],
+            clash: [
+                { nombre: "80 Gemas", moneda: 80, precio: 1.20, etiqueta: "" },
+                { nombre: "500 Gemas", moneda: 500, precio: 2.80, etiqueta: "popular" },
+                { nombre: "1200 Gemas", moneda: 1200, precio: 5.50, etiqueta: "" },
+                { nombre: "2500 Gemas", moneda: 2500, precio: 11.00, etiqueta: "oferta" },
+                { nombre: "6500 Gemas", moneda: 6500, precio: 27.50, etiqueta: "oferta" }
+            ],
+            bloodstrike: [
+                { nombre: "105 Oro", moneda: 105, precio: 1.20, etiqueta: "" },
+                { nombre: "320 Oro", moneda: 320, precio: 3.30, etiqueta: "popular" },
+                { nombre: "540 Oro", moneda: 540, precio: 5.50, etiqueta: "" },
+                { nombre: "1100 Oro", moneda: 1100, precio: 11.00, etiqueta: "oferta" },
+                { nombre: "2260 Oro", moneda: 2260, precio: 22.00, etiqueta: "oferta" },
+                { nombre: "Pase Elite", moneda: 1, precio: 4.50, etiqueta: "" }
+            ],
+            netflix: [
+                { nombre: "Pantalla Netflix (1 Mes)", moneda: 1, precio: 4.00, etiqueta: "popular" }
+            ]
+        };
+
+        const nombresVenezolanos = [
+            "Carlos M.", "Alejandro R.", "José G.", "Mariángel P.", "Valentina S.", 
+            "Jesús D.", "Daniela V.", "Franklin T.", "Gabriela B.", "Luis E.",
+            "Andrés K.", "Oriana C.", "Gabriel Z.", "Yenifer L.", "Miguel H.",
+            "Stiven F.", "Paola N.", "Eduardo J.", "Samuel T.", "Valeria M.",
+            "Héctor B.", "Mariana R.", "Leonardo Q.", "Oriana S.", "Diego P.",
+            "Victoria L.", "Jonathan C.", "Natacha K.", "Ronald M.", "Fabiana G."
+        ];
+
+        const itemsNotificacion = [
+            { juego: "Call of Duty", paquete: "420 CP", img: "https://i.postimg.cc/xJ54854n/Call-of-Duty-Mobile-Season-8-icon.png" },
+            { juego: "Warzone", paquete: "1,100 CP", img: "https://i.postimg.cc/FszFmyL0/images-(17).jpg" },
+            { juego: "Free Fire", paquete: "310 Diamantes", img: "https://i.postimg.cc/S2dvRdv4/images.jpg" },
+            { juego: "Mobile Legends", paquete: "172 Diamantes", img: "https://i.postimg.cc/9QqxMCpt/images-(13).jpg" },
+            { juego: "Zinli", paquete: "Recarga de $20 USD", img: "https://i.postimg.cc/xJnZ9htd/images-(2).png" },
+            { juego: "PUBG Mobile", paquete: "325 UC", img: "https://i.postimg.cc/TLfsTFCY/images-(3).jpg" },
+            { juego: "Netflix", paquete: "Pantalla 1 Mes", img: "https://i.postimg.cc/R64YvyXC/images-(4).jpg" }
+        ];
+
+        function calcularPreciosDesdeInicio() {
+            for (let juego in catalogos) {
+                if (juego === 'codm_convencional') continue;
+                let el = document.getElementById(`precio-desde-${juego}`);
+                if (el && catalogos[juego].length > 0) {
+                    let minPrecioUsd = catalogos[juego][0].precio;
+                    if (juego === 'zinli') minPrecioUsd = 1.00 + fn_comision(1.00);
+                    let minBs = minPrecioUsd * TASA_ZINLI;
+                    el.innerText = `Desde Bs. ${minBs.toLocaleString('es-VE', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                }
+            }
+        }
+
+        function iniciarNotificacionesFlotantes() {
+            setInterval(() => {
+                let nombreAleatorio = nombresVenezolanos[Math.floor(Math.random() * nombresVenezolanos.length)];
+                let itemAleatorio = itemsNotificacion[Math.floor(Math.random() * itemsNotificacion.length)];
+                let minutosHace = Math.floor(Math.random() * 12) + 1;
+
+                let toastBox = document.getElementById("purchase-toast-box");
+                let toastImg = document.getElementById("toast-img");
+                let toastText = document.getElementById("toast-text");
+
+                toastImg.src = itemAleatorio.img;
+                toastText.innerHTML = `<b>${nombreAleatorio}</b> adquirió ${itemAleatorio.paquete}.<br><span style="color:var(--text-sec); font-size:0.68rem;">Hace ${minutosHace} minutos</span>`;
+
+                toastBox.style.display = "flex";
+                setTimeout(() => { toastBox.style.display = "none"; }, 5000);
+            }, 10000);
+        }
+
+        window.onload = function() {
+            calcularPreciosDesdeInicio();
+            setTimeout(iniciarNotificacionesFlotantes, 4000);
+            inicializarSliderTactil();
+            cargarCarritoGuardado();
+        };
+
+        function navegarConCarga(callback) {
+            let overlay = document.getElementById("loading-overlay");
+            overlay.style.display = "flex";
+            setTimeout(() => {
+                callback();
+                overlay.style.display = "none";
+            }, 350);
+        }
+
+        function copiarAlPortapapeles(texto, descripcion) {
+            navigator.clipboard.writeText(texto).then(() => {
+                let toast = document.getElementById("copy-toast");
+                toast.innerHTML = `<i class="fa-solid fa-check"></i> ¡${descripcion} copiado!`;
+                toast.classList.add("show");
+                setTimeout(() => { toast.classList.remove("show"); }, 2500);
+            }).catch(err => { alert("No se pudo copiar automáticamente."); });
+        }
+
+        function toggleFaq(elemento) {
+            let item = elemento.parentElement;
+            item.classList.toggle("active");
+        }
+
+        function filtrarJuegos() {
+            let query = document.getElementById("buscador-juegos").value.toLowerCase().trim();
+            let cards = document.querySelectorAll("#grid-categorias .product-card");
+
+            cards.forEach(card => {
+                let nombreTags = card.getAttribute("data-nombre");
+                let tituloCard = card.querySelector("h3").innerText.toLowerCase();
+                if (nombreTags.includes(query) || tituloCard.includes(query)) card.style.display = "flex";
+                else card.style.display = "none";
+            });
+        }
+
+        function cerrarWelcomePopup() { document.getElementById("welcome-popup").style.display = "none"; }
+        function abrirModalSoporte() { document.getElementById("modal-soporte").style.display = "flex"; }
+        function cerrarModalSoporte() { document.getElementById("modal-soporte").style.display = "none"; }
+        function enviarSoporteWhatsApp() {
+            let nombreApellido = document.getElementById("soporte-nombre-apellido").value.trim();
+            if (!nombreApellido) { alert("Por favor, ingresa tu Nombre y Apellido."); return; }
+            let mensaje = `Hola ZONA ÉLITE STORE ⚡, soy ${nombreApellido} y tengo una duda o necesito soporte.`;
+            window.open(`https://wa.me/584226101249?text=${encodeURIComponent(mensaje)}`, '_blank');
+            cerrarModalSoporte();
+        }
+
+        function ocultarTodasLasVistas() {
+            document.getElementById("vista-categorias").style.display = "none";
+            document.getElementById("vista-catalogo").style.display = "none";
+            document.getElementById("vista-pago").style.display = "none";
+            document.getElementById("vista-datos-recarga").style.display = "none";
+        }
+
+        function abrirCatalogo(tipo) {
+            juegoActual = tipo;
+            ocultarTodasLasVistas();
+            document.getElementById("vista-catalogo").style.display = "block";
+            document.getElementById("bottom-cart-bar").style.display = "block";
+            ajustarPosicionFlotantes();
+            
+            let info = datosJuegosInfo[tipo] || { titulo: tipo.toUpperCase(), img: "", desc: "Recarga oficial." };
+            document.getElementById("game-header-img").src = info.img;
+            document.getElementById("slide-text-1").innerText = info.desc;
+
+            let selectorCodm = document.getElementById("selector-sistema-codm");
+            let fichaTiempo = document.getElementById("ficha-tiempo-entrega");
+
+            if (tipo === 'codm') {
+                selectorCodm.style.display = "block";
+                sistemaCodmActual = "inmediato";
+                actualizarInterfazCodmSistema();
+                // LANZA EL ANUNCIO ESPECIAL DE CODM (5000 CP - $40)
+                mostrarPromoCodm();
+            } else {
+                selectorCodm.style.display = "none";
+                document.getElementById("game-header-title").innerHTML = `${info.titulo} <span class="tag-instantaneo">⚡ Instantáneo</span>`;
+                if(fichaTiempo) fichaTiempo.innerText = "Entre 5 a 20 minutos";
+                renderizarPaquetesCatalogo(tipo);
+            }
+
+            irAPasoSlide(0);
+
+            let notaCodm = document.getElementById("nota-exclusiva-codm");
+            let notaWarzone = document.getElementById("nota-exclusiva-warzone");
+            let notaUid = document.getElementById("nota-exclusiva-uid");
+            let notaMlbb = document.getElementById("nota-exclusiva-mlbb");
+
+            notaCodm.style.display = (tipo === 'codm') ? "block" : "none";
+            notaWarzone.style.display = (tipo === 'warzone') ? "block" : "none";
+            notaUid.style.display = (['freefire', 'pubg', 'bloodstrike', 'delta', 'arena'].includes(tipo)) ? "block" : "none";
+            notaMlbb.style.display = (tipo === 'mlbb') ? "block" : "none";
+        }
+
+        function mostrarPromoCodm() {
+            let bsTotal = (40.00 * TASA_ZINLI).toLocaleString('es-VE', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById("promo-price-bs").innerText = `Equivalente: ${bsTotal} Bs`;
+            document.getElementById("codm-promo-modal").style.display = "flex";
+        }
+
+        function cerrarPromoCodm() {
+            document.getElementById("codm-promo-modal").style.display = "none";
+        }
+
+        function agregarPromoCodmAlCarrito() {
+            let nombrePaquete = "Promo Especial 5,000 CP";
+            let precioUsd = 40.00;
+            let precioBs = precioUsd * TASA_ZINLI;
+
+            if (carrito.length > 0 && carrito[0].tipo !== 'codm') { 
+                alert("Solo puedes agregar paquetes de un mismo juego a la vez."); 
+                return; 
+            }
+
+            carrito.push({ tipo: 'codm', nombre: nombrePaquete, monedaCantidad: 5000, precioUsd: precioUsd, precioBs: precioBs });
+            agruparYActualizarCarrito();
+            cerrarPromoCodm();
+        }
+
+        function cambiarSistemaCodm(sistema) {
+            sistemaCodmActual = sistema;
+            let btnInmediato = document.getElementById("btn-sistema-inmediato");
+            let btnConvencional = document.getElementById("btn-sistema-convencional");
+            let textoAviso = document.getElementById("texto-aviso-sistema");
+            let tagModo = document.getElementById("tag-modo-actual");
+            let fichaTiempo = document.getElementById("ficha-tiempo-entrega");
+
+            if (sistema === 'inmediato') {
+                btnInmediato.classList.add("active");
+                btnConvencional.classList.remove("active");
+                textoAviso.innerHTML = `<b>Sistema Inmediato:</b> Tu pedido será procesado y acreditado en un tiempo estimado de 0 a 30 minutos.`;
+                tagModo.className = "tag-instantaneo";
+                tagModo.innerHTML = "⚡ Instantáneo (0-30 min)";
+                if(fichaTiempo) fichaTiempo.innerText = "Entre 5 a 30 minutos";
+            } else {
+                btnConvencional.classList.add("active");
+                btnInmediato.classList.remove("active");
+                textoAviso.innerHTML = `<b>Sistema Convencional:</b> Tu pedido será procesado y acreditado en un tiempo estimado de 0 a 72 horas.`;
+                tagModo.className = "tag-instantaneo";
+                tagModo.style.background = "rgba(251, 191, 36, 0.15)";
+                tagModo.style.color = "var(--accent-gold)";
+                tagModo.style.borderColor = "var(--accent-gold)";
+                tagModo.innerHTML = "🐢 Convencional (0-72 hrs)";
+                if(fichaTiempo) fichaTiempo.innerText = "Entre 0 a 72 horas";
+            }
+            renderizarPaquetesCatalogo('codm');
+        }
+
+        function actualizarInterfazCodmSistema() {
+            cambiarSistemaCodm('inmediato');
+        }
+
+        function renderizarPaquetesCatalogo(tipo) {
+            let contenedor = document.getElementById("contenedor-paquetes");
+            contenedor.innerHTML = "";
+
+            if (tipo === 'zinli') {
+                contenedor.innerHTML = `
+                    <div class="product-card" style="grid-column: 1 / -1; max-width: 380px; margin: 0 auto;">
+                        <img src="${iconosMoneda.zinli}" alt="Zinli">
+                        <h3>Calculadora Zinli</h3>
+                        <p class="description" style="font-size:0.78rem; color:var(--text-sec); margin-bottom:8px;">Mínimo 1 dólar ($).</p>
+                        <div class="input-container">
+                            <label><i class="fa-solid fa-dollar-sign"></i> Dólares ($):</label>
+                            <input type="number" id="monto-zinli" placeholder="Ej: 5" min="1" step="1" oninput="calcularZinliUI()">
+                        </div>
+                        <p style="font-size:0.85rem; color:var(--accent-blue); font-weight:700;">Total a pagar: <span id="zinli-bs-total">0.00</span> Bs</p>
+                        <button class="add-to-cart-btn" onclick="agregarZinliAlCarro()">Agregar al Pedido</button>
+                    </div>
+                `;
+                return;
+            }
+
+            let claveCatalogo = (tipo === 'codm' && sistemaCodmActual === 'convencional') ? 'codm_convencional' : tipo;
+            let listaPaquetes = catalogos[claveCatalogo] || [];
+            let iconoMonedaUrl = iconosMoneda[tipo] || "";
+
+            listaPaquetes.forEach(item => {
+                let precioBs = (item.precio * TASA_ZINLI).toLocaleString('es-VE', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                let etiquetaHtml = "";
+                if (item.etiqueta === "popular") etiquetaHtml = `<div class="badge-popular">Popular</div>`;
+                else if (item.etiqueta === "oferta") etiquetaHtml = `<div class="badge-oferta">Oferta</div>`;
+
+                let mostrarIcono = false;
+                if ((tipo === 'codm' || tipo === 'warzone') && item.nombre.includes('CP')) mostrarIcono = true;
+                if (tipo === 'freefire' && item.nombre.includes('Diamantes')) mostrarIcono = true;
+                if (tipo === 'pubg' && item.nombre.includes('UC')) mostrarIcono = true;
+                if (tipo === 'mlbb' && item.nombre.includes('Diamantes')) mostrarIcono = true;
+                if (tipo === 'delta' && item.nombre.includes('Delta Coins')) mostrarIcono = true;
+                if (tipo === 'arena' && item.nombre.includes('Bonus')) mostrarIcono = true;
+                if (tipo === 'roblox' && item.nombre.includes('Robux')) mostrarIcono = true;
+                if (tipo === 'tiktok' && item.nombre.includes('Monedas')) mostrarIcono = true;
+                if ((tipo === 'royale' || tipo === 'clash') && item.nombre.includes('Gemas')) mostrarIcono = true;
+                if (tipo === 'bloodstrike' && item.nombre.includes('Oro')) mostrarIcono = true;
+
+                let imgHtml = mostrarIcono && iconoMonedaUrl ? `<img src="${iconoMonedaUrl}" alt="Icono">` : '';
+
+                contenedor.innerHTML += `
+                    <div class="product-card">
+                        ${etiquetaHtml}
+                        ${imgHtml}
+                        <h3>${item.nombre}</h3>
+                        <div class="price-desde" style="margin-top:auto;">${precioBs} Bs</div>
+                        <button class="add-to-cart-btn" onclick="agregarJuegoAlCarro('${item.nombre}', ${item.moneda}, ${item.precio})">Agregar</button>
+                    </div>
+                `;
+            });
+        }
+
+        function irAPasoSlide(index) {
+            pasoActualSlide = index;
+            let track = document.getElementById("steps-track");
+            let circulos = document.querySelectorAll(".game-header-box .step-circle");
+
+            if (track) track.style.transform = `translateX(-${index * 33.333}%)`;
+            circulos.forEach((c, i) => {
+                if (i === index) c.classList.add("active");
+                else c.classList.remove("active");
+            });
+        }
+
+        function inicializarSliderTactil() {
+            let wrapper = document.getElementById("slider-wrapper");
+            if (!wrapper) return;
+            let touchStartX = 0, touchEndX = 0;
+            wrapper.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+            wrapper.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                let umbral = 40;
+                if (touchEndX < touchStartX - umbral && pasoActualSlide < 2) irAPasoSlide(pasoActualSlide + 1);
+                else if (touchEndX > touchStartX + umbral && pasoActualSlide > 0) irAPasoSlide(pasoActualSlide - 1);
+            }, {passive: true});
+        }
+
+        function volverACategorias() {
+            navegarConCarga(() => {
+                ocultarTodasLasVistas();
+                document.getElementById("vista-categorias").style.display = "block";
+                document.getElementById("bottom-cart-bar").style.display = "block";
+                ajustarPosicionFlotantes();
+            });
+        }
+
+        function volverAlCatalogoOpciones() {
+            navegarConCarga(() => {
+                if (juegoActual) abrirCatalogo(juegoActual);
+                else volverACategorias();
+            });
+        }
+
+        const fn_comision = (dolares) => {
+            if (dolares >= 1 && dolares <= 3) return 0.35;
+            if (dolares >= 4 && dolares <= 6) return 0.50;
+            if (dolares >= 7 && dolares <= 13) return 1.00;
+            if (dolares >= 14 && dolares <= 19) return 1.50;
+            if (dolares >= 20 && dolares <= 31) return 2.00;
+            if (dolares >= 32 && dolares <= 41) return 2.50;
+            if (dolares >= 42 && dolares <= 59) return 3.00;
+            if (dolares >= 60 && dolares <= 71) return 3.50;
+            if (dolares >= 72 && dolares <= 85) return 4.00;
+            if (dolares >= 86 && dolares <= 99) return 5.00;
+            if (dolares >= 100) return dolares * 0.06;
+            return 0;
+        };
+
+        function calcularZinliUI() {
+            let dolares = parseFloat(document.getElementById("monto-zinli").value) || 0;
+            let comision = Math.round(fn_comision(dolares) * 100) / 100;
+            let totalUsd = dolares + comision;
+            let totalBs = totalUsd * TASA_ZINLI;
+            document.getElementById("zinli-bs-total").innerText = totalBs.toLocaleString('es-VE', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        }
+
+        function agregarZinliAlCarro() {
+            let dolares = parseFloat(document.getElementById("monto-zinli").value);
+            if (!dolares || dolares < 1) { alert("El monto mínimo de recarga Zinli es de $1 USD."); return; }
+            if (carrito.length > 0 && carrito[0].tipo !== 'zinli') { alert("Solo puedes realizar compras de una sola categoría a la vez."); return; }
+
+            let comision = Math.round(fn_comision(dolares) * 100) / 100;
+            let totalUsd = dolares + comision;
+            let precioBs = totalUsd * TASA_ZINLI;
+
+            carrito.push({ tipo: 'zinli', nombre: `Recarga Zinli ($${dolares} USD + $${comision} com.)`, monedaCantidad: dolares, precioUsd: totalUsd, precioBs: precioBs });
+            agruparYActualizarCarrito();
+        }
+
+        function agregarJuegoAlCarro(nombre, monedaCant, precioUsd) {
+            if (carrito.length > 0 && carrito[0].tipo !== juegoActual) { alert("Solo puedes agregar paquetes de un mismo juego a la vez."); return; }
+            let precioBs = precioUsd * TASA_ZINLI;
+            carrito.push({ tipo: juegoActual, nombre: nombre, monedaCantidad: monedaCant, precioUsd: precioUsd, precioBs: precioBs });
+            agruparYActualizarCarrito();
+        }
+
+        function ajustarPosicionFlotantes() {
+            let whatsappBtn = document.getElementById("whatsapp-float-btn");
+            let toastBox = document.getElementById("purchase-toast-box");
+            
+            let vistaPagoVisible = document.getElementById("vista-pago").style.display === "block";
+            let vistaDatosVisible = document.getElementById("vista-datos-recarga").style.display === "block";
+
+            if (vistaPagoVisible || vistaDatosVisible) {
+                if(whatsappBtn) whatsappBtn.style.bottom = "20px";
+                if(toastBox) toastBox.style.bottom = "20px";
+                return;
+            }
+
+            if (carrito.length > 0) {
+                if(whatsappBtn) whatsappBtn.style.bottom = "170px";
+                if(toastBox) toastBox.style.bottom = "170px";
+            } else {
+                if(whatsappBtn) whatsappBtn.style.bottom = "110px";
+                if(toastBox) toastBox.style.bottom = "110px";
+            }
+        }
+
+        function agruparYActualizarCarrito() {
+            let contenedor = document.getElementById("cart-items");
+            let totalUsdEl = document.getElementById("cart-total-usd");
+            let totalBsEl = document.getElementById("cart-total-bs");
+            let totalMonedasEl = document.getElementById("total-acumulado-monedas");
+
+            contenedor.innerHTML = "";
+            let sumaUsd = 0, sumaBs = 0, sumaMonedas = 0;
+
+            if (carrito.length === 0) {
+                contenedor.innerHTML = `<p style="font-size: 0.72rem; color: var(--text-sec);">El carrito está vacío.</p>`;
+                totalUsdEl.innerText = "0.00";
+                totalBsEl.innerText = "0.00";
+                totalMonedasEl.innerText = "";
+                localStorage.removeItem("zona_elite_carrito");
+                ajustarPosicionFlotantes();
+                return;
+            }
+
+            let agrupados = {};
+            carrito.forEach(item => {
+                sumaUsd += item.precioUsd;
+                sumaBs += item.precioBs;
+                if (item.monedaCantidad > 1) sumaMonedas += item.monedaCantidad;
+
+                if (agrupados[item.nombre]) {
+                    agrupados[item.nombre].cantidad += 1;
+                    agrupados[item.nombre].totalUsd += item.precioUsd;
+                    agrupados[item.nombre].totalBs += item.precioBs;
+                } else {
+                    agrupados[item.nombre] = { cantidad: 1, totalUsd: item.precioUsd, totalBs: item.precioBs };
+                }
+            });
+
+            for (let nombre in agrupados) {
+                let info = agrupados[nombre];
+                let textoVisual = info.cantidad > 1 ? `${info.cantidad}x ${nombre}` : nombre;
+                contenedor.innerHTML += `
+                    <div class="cart-item-row">
+                        <span>${textoVisual} - <b>${info.totalBs.toFixed(2)} Bs</b></span>
+                        <button class="delete-btn" onclick="eliminarPorNombreAgrupado('${nombre}')">X</button>
+                    </div>
+                `;
+            }
+
+            if (sumaMonedas > 0 && carrito.length > 0) {
+                let tipoCat = carrito[0].tipo;
+                let nombreUnidad = (tipoCat === 'codm' || tipoCat === 'warzone') ? 'CP' : (tipoCat === 'freefire' || tipoCat === 'mlbb') ? 'Diamantes' : (tipoCat === 'roblox') ? 'Robux' : (tipoCat === 'pubg') ? 'UC' : (tipoCat === 'tiktok') ? 'Monedas' : (tipoCat === 'royale' || tipoCat === 'clash') ? 'Gemas' : (tipoCat === 'bloodstrike') ? 'Oro' : (tipoCat === 'delta') ? 'Delta Coins' : (tipoCat === 'arena') ? 'Bonus' : '';
+                if (nombreUnidad) totalMonedasEl.innerText = `Total: ${sumaMonedas} ${nombreUnidad}`;
+                else totalMonedasEl.innerText = "";
+            } else { totalMonedasEl.innerText = ""; }
+
+            totalUsdEl.innerText = sumaUsd.toFixed(2);
+            totalBsEl.innerText = sumaBs.toLocaleString('es-VE', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            localStorage.setItem("zona_elite_carrito", JSON.stringify(carrito));
+            ajustarPosicionFlotantes();
+        }
+
+        function cargarCarritoGuardado() {
+            let guardado = localStorage.getItem("zona_elite_carrito");
+            if (guardado) {
+                try { carrito = JSON.parse(guardado); agruparYActualizarCarrito(); } catch(e) { carrito = []; }
+            }
+            ajustarPosicionFlotantes();
+        }
+
+        function eliminarPorNombreAgrupado(nombrePaquete) {
+            let index = carrito.findIndex(item => item.nombre === nombrePaquete);
+            if (index !== -1) {
+                carrito.splice(index, 1);
+                agruparYActualizarCarrito();
+                if(document.getElementById("modal-confirmar-pedido").style.display === "flex") {
+                    if(carrito.length === 0) cerrarModalPedido();
+                    else abrirModalConfirmacion();
+                }
+            }
+        }
+
+        function eliminarItemPorIndex(index) {
+            carrito.splice(index, 1);
+            agruparYActualizarCarrito();
+            if (carrito.length === 0) cerrarModalPedido();
+            else abrirModalConfirmacion();
+        }
+
+        function abrirModalConfirmacion() {
+            if (carrito.length === 0) { alert("Tu carrito está vacío. Agrega un paquete primero."); return; }
+            let modalLista = document.getElementById("modal-items-list");
+            modalLista.innerHTML = "";
+            let sumaUsd = 0, sumaBs = 0;
+
+            carrito.forEach((item, index) => {
+                sumaUsd += item.precioUsd;
+                sumaBs += item.precioBs;
+                modalLista.innerHTML += `
+                    <div class="modal-item-row">
+                        <span>${item.nombre} - <b>${item.precioBs.toFixed(2)} Bs</b></span>
+                        <button class="modal-delete-btn" onclick="eliminarItemPorIndex(${index})">Eliminar</button>
+                    </div>
+                `;
+            });
+
+            document.getElementById("modal-total-bs-display").innerText = sumaBs.toLocaleString('es-VE', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " Bs";
+            document.getElementById("modal-total-usd-display").innerText = "$" + sumaUsd.toFixed(2) + " USD";
+            document.getElementById("modal-confirmar-pedido").style.display = "flex";
+        }
+
+        function cerrarModalPedido() { document.getElementById("modal-confirmar-pedido").style.display = "none"; }
+        function procedirAlPagoDesdeModal() { cerrarModalPedido(); irAPasoPagoVertical(); }
+
+        function irAPasoPagoVertical() {
+            navegarConCarga(() => {
+                ocultarTodasLasVistas();
+                document.getElementById("vista-pago").style.display = "block";
+                document.getElementById("bottom-cart-bar").style.display = "none";
+                ajustarPosicionFlotantes();
+                mostrarDatosPagoVertical();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        function mostrarDatosPagoVertical() {
+            let metodo = document.getElementById("metodo-pago").value;
+            let caja = document.getElementById("info-datos-pago-vertical");
+
+            let sumaBs = carrito.reduce((acc, item) => acc + item.precioBs, 0);
+            let sumaUsd = carrito.reduce((acc, item) => acc + item.precioUsd, 0);
+
+            let formatoBs = sumaBs.toLocaleString('es-VE', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            let formatoUsd = sumaUsd.toFixed(2);
+
+            if (metodo === "Pago Móvil") {
+                caja.innerHTML = `
+                    <div style="background: rgba(56, 189, 248, 0.1); border: 1px solid var(--accent-blue); padding: 8px 12px; border-radius: 8px; margin-bottom: 8px; text-align: center;">
+                        <span style="font-size: 0.82rem; color: var(--accent-blue);"><b>Monto a pagar:</b> ${formatoBs} Bs</span>
+                    </div>
+                    <div class="payment-row-item">
+                        <span><b>Banco:</b> Banco de Venezuela (0102)</span>
+                        <button class="copy-btn-box" onclick="copiarAlPortapapeles('0102', 'Banco')"><i class="fa-solid fa-copy"></i> Copiar</button>
+                    </div>
+                    <div class="payment-row-item">
+                        <span><b>Teléfono:</b> 0414-610-1249</span>
+                        <button class="copy-btn-box" onclick="copiarAlPortapapeles('04146101249', 'Teléfono')"><i class="fa-solid fa-copy"></i> Copiar</button>
+                    </div>
+                    <div class="payment-row-item">
+                        <span><b>Cédula / C.I:</b> 30.390.225</span>
+                        <button class="copy-btn-box" onclick="copiarAlPortapapeles('30390225', 'Cédula')"><i class="fa-solid fa-copy"></i> Copiar</button>
+                    </div>
+                `;
+            } else if (metodo === "Transferencia Bancaria") {
+                caja.innerHTML = `
+                    <div style="background: rgba(56, 189, 248, 0.1); border: 1px solid var(--accent-blue); padding: 8px 12px; border-radius: 8px; margin-bottom: 8px; text-align: center;">
+                        <span style="font-size: 0.82rem; color: var(--accent-blue);"><b>Monto a pagar:</b> ${formatoBs} Bs</span>
+                    </div>
+                    <div class="payment-row-item">
+                        <span><b>Banco:</b> Banco de Venezuela</span>
+                        <button class="copy-btn-box" onclick="copiarAlPortapapeles('Banco de Venezuela', 'Banco')"><i class="fa-solid fa-copy"></i> Copiar</button>
+                    </div>
+                    <div class="payment-row-item">
+                        <span><b>Cuenta:</b> 01020535250000333670</span>
+                        <button class="copy-btn-box" onclick="copiarAlPortapapeles('01020535250000333670', 'Nro de Cuenta')"><i class="fa-solid fa-copy"></i> Copiar</button>
+                    </div>
+                    <div class="payment-row-item">
+                        <span><b>Cédula / C.I:</b> 30.390.225</span>
+                        <button class="copy-btn-box" onclick="copiarAlPortapapeles('30390225', 'Cédula')"><i class="fa-solid fa-copy"></i> Copiar</button>
+                    </div>
+                `;
+            } else {
+                caja.innerHTML = `
+                    <div style="background: rgba(34, 197, 94, 0.1); border: 1px solid #22c55e; padding: 8px 12px; border-radius: 8px; margin-bottom: 8px; text-align: center;">
+                        <span style="font-size: 0.82rem; color: #22c55e;"><b>Monto a pagar:</b> ${formatoUsd} USDT</span>
+                    </div>
+                    <div class="payment-row-item">
+                        <span><b>Binance Pay (Correo):</b> jtoyoguerra2@gmail.com</span>
+                        <button class="copy-btn-box" onclick="copiarAlPortapapeles('jtoyoguerra2@gmail.com', 'Correo Binance')"><i class="fa-solid fa-copy"></i> Copiar</button>
+                    </div>
+                    <div class="payment-row-item">
+                        <span><b>Binance Pay (ID):</b> 429047728</span>
+                        <button class="copy-btn-box" onclick="copiarAlPortapapeles('429047728', 'ID Binance')"><i class="fa-solid fa-copy"></i> Copiar</button>
+                    </div>
+                `;
+            }
+        }
+
+        function seleccionarMetodoAcceso(metodo) {
+            metodoAccesoCodm = metodo;
+            document.getElementById("pill-metodo-activo").innerText = metodo;
+            let tabs = document.querySelectorAll("#tabs-codm .access-tab");
+            tabs.forEach(t => t.classList.remove("active"));
+            
+            let labelCorreo = document.getElementById("label-correo-codm");
+            let labelPass = document.getElementById("label-pass-codm");
+            let inputCorreo = document.getElementById("login-usuario-codm");
+
+            if (metodo === "Activision") {
+                tabs[0].classList.add("active");
+                if(labelCorreo) labelCorreo.innerHTML = `<i class="fa-solid fa-envelope"></i> Correo Electrónico de la Cuenta:`;
+                if(labelPass) labelPass.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles"></i> Contraseña de la Cuenta:`;
+                if(inputCorreo) inputCorreo.placeholder = "ejemplo@gmail.com o correo de Activision";
+            } else if (metodo === "Facebook") {
+                tabs[1].classList.add("active");
+                if(labelCorreo) labelCorreo.innerHTML = `<i class="fa-solid fa-envelope"></i> Correo o Teléfono de Facebook:`;
+                if(labelPass) labelPass.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles"></i> Contraseña de Facebook:`;
+                if(inputCorreo) inputCorreo.placeholder = "Correo o número de teléfono de Facebook";
+            } else {
+                tabs[2].classList.add("active");
+                if(labelCorreo) labelCorreo.innerHTML = `<i class="fa-solid fa-envelope"></i> Correo Electrónico de Google:`;
+                if(labelPass) labelPass.innerHTML = `<i class="fa-solid fa-wand-magic-sparkles"></i> Contraseña de Google:`;
+                if(inputCorreo) inputCorreo.placeholder = "tucorreo@gmail.com";
+            }
+        }
+
+        function seleccionarAccesoWarzone(metodo) {
+            metodoAccesoWarzone = metodo;
+            document.getElementById("pill-metodo-activo").innerText = "Warzone - " + metodo;
+            let tabs = document.querySelectorAll("#tabs-warzone .access-tab");
+            tabs.forEach(t => t.classList.remove("active"));
+
+            if (metodo === "Xbox") tabs[0].classList.add("active");
+            else if (metodo === "PlayStation") tabs[1].classList.add("active");
+            else if (metodo === "Steam") tabs[2].classList.add("active");
+            else if (metodo === "Battle.net") tabs[3].classList.add("active");
+        }
+
+        function irAPasoDatosRecargaVertical() {
+            let ref = document.getElementById("nro-referencia").value.trim();
+            if (!ref) { alert("Ingresa los últimos 4 dígitos o referencia de tu pago."); return; }
+
+            navegarConCarga(() => {
+                ocultarTodasLasVistas();
+                document.getElementById("vista-datos-recarga").style.display = "block";
+                document.getElementById("bottom-cart-bar").style.display = "none";
+                ajustarPosicionFlotantes();
+                
+                let contenedorCampos = document.getElementById("campos-recarga-vertical");
+                contenedorCampos.innerHTML = "";
+
+                let tiposEnCarrito = [...new Set(carrito.map(item => item.tipo))];
+
+                let clienteGuardado = localStorage.getItem("zona_elite_cliente") || "";
+                let nicknameGuardado = localStorage.getItem("zona_elite_nick") || "";
+                let uidGuardado = localStorage.getItem("zona_elite_uid") || "";
+                let usuarioGuardado = localStorage.getItem("zona_elite_usr") || "";
+                let passGuardado = localStorage.getItem("zona_elite_pass") || "";
+                let zonaGuardado = localStorage.getItem("zona_elite_zona") || "";
+                let correoGuardado = localStorage.getItem("zona_elite_correo") || "";
+
+                setTimeout(() => {
+                    let inputCliente = document.getElementById("cliente-nombre-apellido");
+                    if(inputCliente && clienteGuardado) inputCliente.value = clienteGuardado;
+                }, 50);
+
+                tiposEnCarrito.forEach(tipo => {
+                    if (tipo === 'codm') {
+                        contenedorCampos.innerHTML += `
+                            <div style="padding-bottom:10px; margin-bottom:10px;">
+                                <div class="input-container">
+                                    <label><i class="fa-solid fa-mobile-screen"></i> Selecciona Método de Acceso (CODM):</label>
+                                    <div class="access-tabs" id="tabs-codm">
+                                        <div class="access-tab active" onclick="seleccionarMetodoAcceso('Activision')"><i class="fa-solid fa-globe"></i> Activision</div>
+                                        <div class="access-tab" onclick="seleccionarMetodoAcceso('Facebook')"><i class="fa-brands fa-facebook"></i> Facebook</div>
+                                        <div class="access-tab" onclick="seleccionarMetodoAcceso('Google')"><i class="fa-brands fa-google"></i> Google</div>
+                                    </div>
+                                </div>
+                                <div class="input-container">
+                                    <label id="label-correo-codm"><i class="fa-solid fa-envelope"></i> Correo Electrónico de la Cuenta:</label>
+                                    <input type="text" id="login-usuario-codm" value="${usuarioGuardado}" placeholder="ejemplo@gmail.com o correo de Activision">
+                                </div>
+                                <div class="input-container">
+                                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                                        <label id="label-pass-codm"><i class="fa-solid fa-wand-magic-sparkles"></i> Contraseña de la Cuenta:</label>
+                                        <button type="button" onclick="alternarPassword('login-pass-codm', this)" style="background:none; border:none; color:var(--accent-blue); font-size:0.75rem; cursor:pointer; font-weight:600;">Mostrar</button>
+                                    </div>
+                                    <input type="password" id="login-pass-codm" value="${passGuardado}" placeholder="••••••••••••">
+                                </div>
+                                <div class="input-container">
+                                    <label><i class="fa-solid fa-user"></i> Nombre / Nickname en el Juego:</label>
+                                    <input type="text" id="nickname-${tipo}" value="${nicknameGuardado}" placeholder="Ej: Ghost_COD99">
+                                </div>
+                            </div>
+                        `;
+                    } else if (tipo === 'warzone') {
+                        contenedorCampos.innerHTML += `
+                            <div style="padding-bottom:10px; margin-bottom:10px;">
+                                <div class="input-container">
+                                    <label><i class="fa-solid fa-gamepad"></i> Selecciona Plataforma Warzone:</label>
+                                    <div class="access-tabs warzone-tabs" id="tabs-warzone" style="grid-template-columns: repeat(2, 1fr);">
+                                        <div class="access-tab active" onclick="seleccionarAccesoWarzone('Xbox')"><i class="fa-brands fa-xbox"></i> Xbox</div>
+                                        <div class="access-tab" onclick="seleccionarAccesoWarzone('PlayStation')"><i class="fa-brands fa-playstation"></i> PlayStation</div>
+                                        <div class="access-tab" onclick="seleccionarAccesoWarzone('Steam')"><i class="fa-brands fa-steam"></i> Steam</div>
+                                        <div class="access-tab" onclick="seleccionarAccesoWarzone('Battle.net')"><i class="fa-solid fa-shield-halved"></i> Battle.net</div>
+                                    </div>
+                                </div>
+                                <div class="input-container">
+                                    <label><i class="fa-solid fa-envelope"></i> Correo de Acceso:</label>
+                                    <input type="text" id="login-usuario-warzone" value="${usuarioGuardado}" placeholder="tucorreo@ejemplo.com">
+                                </div>
+                                <div class="input-container">
+                                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                                        <label><i class="fa-solid fa-wand-magic-sparkles"></i> Contraseña:</label>
+                                        <button type="button" onclick="alternarPassword('login-pass-warzone', this)" style="background:none; border:none; color:var(--accent-blue); font-size:0.75rem; cursor:pointer; font-weight:600;">Mostrar</button>
+                                    </div>
+                                    <input type="password" id="login-pass-warzone" value="${passGuardado}" placeholder="••••••••••••">
+                                </div>
+                                <div class="input-container">
+                                    <label><i class="fa-solid fa-user"></i> Nickname / ID de Activision:</label>
+                                    <input type="text" id="nickname-${tipo}" value="${nicknameGuardado}" placeholder="Ej: Player#12345">
+                                </div>
+                            </div>
+                        `;
+                    } else if (tipo === 'freefire' || tipo === 'pubg' || tipo === 'bloodstrike' || tipo === 'delta' || tipo === 'arena') {
+                        let nombreJuego = tipo === 'freefire' ? 'Free Fire' : tipo === 'pubg' ? 'PUBG Mobile' : tipo === 'bloodstrike' ? 'Blood Strike' : tipo === 'delta' ? 'Delta Force' : 'Arena Breakout';
+                        contenedorCampos.innerHTML += `
+                            <div style="padding-bottom:10px; margin-bottom:10px;">
+                                <b style="color:var(--accent-blue); font-size:0.88rem; display:block; margin-bottom:10px;">${nombreJuego}</b>
+                                <div class="input-container">
+                                    <label><i class="fa-solid fa-user"></i> Nombre / Nickname en el Juego:</label>
+                                    <input type="text" id="nickname-${tipo}" value="${nicknameGuardado}" placeholder="Ej: Player99">
+                                </div>
+                                <div class="input-container">
+                                    <label><i class="fa-solid fa-id-badge"></i> ID de Usuario (UID):</label>
+                                    <input type="text" id="login-uid-${tipo}" value="${uidGuardado}" placeholder="Ingresa tu UID">
+                                </div>
+                            </div>
+                        `;
+                    } else if (tipo === 'mlbb') {
+                        contenedorCampos.innerHTML += `
+                            <div style="padding-bottom:10px; margin-bottom:10px;">
+                                <b style="color:var(--accent-blue); font-size:0.88rem; display:block; margin-bottom:10px;">Mobile Legends</b>
+                                <div class="input-container">
+                                    <label><i class="fa-solid fa-user"></i> Nickname en el Juego:</label>
+                                    <input type="text" id="nickname-${tipo}" value="${nicknameGuardado}" placeholder="Ej: ElitePlayer">
+                                </div>
+                                <div class="input-container">
+                                    <label><i class="fa-solid fa-id-badge"></i> ID de Usuario (UID):</label>
+                                    <input type="text" id="login-uid-${tipo}" value="${uidGuardado}" placeholder="Ej: 12345678">
+                                </div>
+                                <div class="input-container">
+                                    <label><i class="fa-solid fa-location-dot"></i> Zona ID:</label>
+                                    <input type="text" id="login-zona-${tipo}" value="${zonaGuardado}" placeholder="Ej: 1234">
+                                </div>
+                            </div>
+                        `;
+                    } else if (tipo === 'roblox' || tipo === 'tiktok') {
+                        let nombreServicio = tipo === 'roblox' ? 'Roblox' : 'TikTok';
+                        contenedorCampos.innerHTML += `
+                            <div style="padding-bottom:10px; margin-bottom:10px;">
+                                <b style="color:var(--accent-blue); font-size:0.88rem; display:block; margin-bottom:10px;">${nombreServicio}</b>
+                                <div class="input-container">
+                                    <label><i class="fa-solid fa-user"></i> Usuario:</label>
+                                    <input type="text" id="login-usuario-${tipo}" value="${usuarioGuardado}" placeholder="Tu Usuario">
+                                </div>
+                                <div class="input-container">
+                                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                                        <label><i class="fa-solid fa-wand-magic-sparkles"></i> Contraseña:</label>
+                                        <button type="button" onclick="alternarPassword('login-pass-${tipo}', this)" style="background:none; border:none; color:var(--accent-blue); font-size:0.75rem; cursor:pointer; font-weight:600;">Mostrar</button>
+                                    </div>
+                                    <input type="password" id="login-pass-${tipo}" value="${passGuardado}" placeholder="••••••••••••">
+                                </div>
+                            </div>
+                        `;
+                    } else if (tipo === 'royale' || tipo === 'clash' || tipo === 'zinli') {
+                        let nombreServicio = tipo === 'royale' ? 'Clash Royale' : tipo === 'clash' ? 'Clash of Clans' : 'Zinli';
+                        contenedorCampos.innerHTML += `
+                            <div style="padding-bottom:10px; margin-bottom:10px;">
+                                <b style="color:var(--accent-blue); font-size:0.88rem; display:block; margin-bottom:10px;">${nombreServicio}</b>
+                                <div class="input-container">
+                                    <label><i class="fa-solid fa-user"></i> Nickname:</label>
+                                    <input type="text" id="nickname-${tipo}" value="${nicknameGuardado}" placeholder="Tu Nickname">
+                                </div>
+                                <div class="input-container">
+                                    <label><i class="fa-solid fa-envelope"></i> Correo Electrónico:</label>
+                                    <input type="email" id="login-correo-${tipo}" value="${correoGuardado}" placeholder="correo@ejemplo.com">
+                                </div>
+                            </div>
+                        `;
+                    } else if (tipo === 'netflix') {
+                        contenedorCampos.innerHTML += `
+                            <div style="padding-bottom:10px; margin-bottom:10px;">
+                                <b style="color:var(--accent-blue); font-size:0.88rem;">Pantallas Netflix</b>
+                                <p style="font-size:0.75rem; color:var(--text-sec);">Se entrega directo a tu WhatsApp tras validar el pago.</p>
+                            </div>
+                        `;
+                    }
+                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        function finalizarCompraWhatsApp() {
+            let nombreCliente = document.getElementById("cliente-nombre-apellido").value.trim();
+            if (!nombreCliente) { alert("Por favor, ingresa tu Nombre y Apellido."); return; }
+            localStorage.setItem("zona_elite_cliente", nombreCliente);
+
+            let tiposEnCarrito = [...new Set(carrito.map(item => item.tipo))];
+            for (let tipo of tiposEnCarrito) {
+                if (tipo === 'codm') {
+                    let u = document.getElementById("login-usuario-codm")?.value.trim() || "";
+                    let p = document.getElementById("login-pass-codm")?.value.trim() || "";
+                    let nick = document.getElementById(`nickname-${tipo}`)?.value.trim() || "";
+                    if (!u || !p || !nick) { alert("Todos los campos de acceso y nickname de Call of Duty son obligatorios."); return; }
+                    localStorage.setItem("zona_elite_usr", u);
+                    localStorage.setItem("zona_elite_pass", p);
+                    localStorage.setItem("zona_elite_nick", nick);
+                } else if (tipo === 'warzone') {
+                    let u = document.getElementById("login-usuario-warzone")?.value.trim() || "";
+                    let p = document.getElementById("login-pass-warzone")?.value.trim() || "";
+                    let nick = document.getElementById(`nickname-${tipo}`)?.value.trim() || "";
+                    if (!u || !p || !nick) { alert("Todos los campos de acceso y nickname de Warzone son obligatorios."); return; }
+                    localStorage.setItem("zona_elite_usr", u);
+                    localStorage.setItem("zona_elite_pass", p);
+                    localStorage.setItem("zona_elite_nick", nick);
+                } else if (tipo === 'freefire' || tipo === 'pubg' || tipo === 'bloodstrike' || tipo === 'delta' || tipo === 'arena') {
+                    let nick = document.getElementById(`nickname-${tipo}`)?.value.trim() || "";
+                    let uid = document.getElementById(`login-uid-${tipo}`)?.value.trim() || "";
+                    if (!nick || !uid) { alert("El Nickname y el ID de Usuario (UID) son obligatorios."); return; }
+                    localStorage.setItem("zona_elite_nick", nick);
+                    localStorage.setItem("zona_elite_uid", uid);
+                } else if (tipo === 'mlbb') {
+                    let nick = document.getElementById(`nickname-${tipo}`)?.value.trim() || "";
+                    let uid = document.getElementById(`login-uid-${tipo}`)?.value.trim() || "";
+                    let zona = document.getElementById(`login-zona-${tipo}`)?.value.trim() || "";
+                    if (!nick || !uid || !zona) { alert("El Nickname, el ID de Usuario (UID) y la Zona ID son obligatorios para Mobile Legends."); return; }
+                    localStorage.setItem("zona_elite_nick", nick);
+                    localStorage.setItem("zona_elite_uid", uid);
+                    localStorage.setItem("zona_elite_zona", zona);
+                } else if (tipo === 'roblox' || tipo === 'tiktok') {
+                    let u = document.getElementById(`login-usuario-${tipo}`)?.value.trim() || "";
+                    let p = document.getElementById(`login-pass-${tipo}`)?.value.trim() || "";
+                    if (!u || !p) { alert("El Usuario y la Contraseña son obligatorios."); return; }
+                    localStorage.setItem("zona_elite_usr", u);
+                    localStorage.setItem("zona_elite_pass", p);
+                } else if (tipo === 'royale' || tipo === 'clash' || tipo === 'zinli') {
+                    let nick = document.getElementById(`nickname-${tipo}`)?.value.trim() || "";
+                    let correo = document.getElementById(`login-correo-${tipo}`)?.value.trim() || "";
+                    if (!nick || !correo) { alert("El Nickname y el Correo Electrónico son obligatorios."); return; }
+                    localStorage.setItem("zona_elite_nick", nick);
+                    localStorage.setItem("zona_elite_correo", correo);
+                }
+            }
+
+            let metodoPago = document.getElementById("metodo-pago").value;
+            let referencia = document.getElementById("nro-referencia").value.trim();
+
+            let mensaje = `Hola ZONA ÉLITE STORE ⚡, quiero confirmar mi pedido:%0A%0A`;
+            mensaje += `👤 *Cliente:* ${nombreCliente}%0A`;
+            if(juegoActual === 'codm') {
+                let modoStr = (sistemaCodmActual === 'inmediato') ? '⚡ Sistema Inmediato (0-30 min)' : '🐢 Sistema Convencional (0-72 hrs)';
+                mensaje += `⚙️ *Modalidad CODM:* ${modoStr}%0A`;
+            }
+            mensaje += `💳 *Método de Pago:* ${metodoPago}%0A`;
+            mensaje += `🔢 *Referencia:* ${referencia}%0A%0A`;
+            mensaje += `🛒 *PEDIDO:*%0A`;
+
+            let sumaUsd = 0, sumaBs = 0;
+            carrito.forEach(item => {
+                mensaje += `• ${item.nombre} - $${item.precioUsd.toFixed(2)} (${item.precioBs.toFixed(2)} Bs)%0A`;
+                sumaUsd += item.precioUsd;
+                sumaBs += item.precioBs;
+            });
+
+            mensaje += `%0A------------------------%0A`;
+            tiposEnCarrito.forEach(tipo => {
+                let nickname = document.getElementById(`nickname-${tipo}`)?.value || "";
+                if (nickname) mensaje += `🎮 *Nickname:* ${nickname}%0A`;
+
+                if (tipo === 'codm') {
+                    let u = document.getElementById("login-usuario-codm")?.value || "";
+                    let p = document.getElementById("login-pass-codm")?.value || "";
+                    mensaje += `🔐 *CODM Vía:* ${metodoAccesoCodm} | *Usr:* ${u} | *Clave:* ${p}%0A`;
+                } else if (tipo === 'warzone') {
+                    let u = document.getElementById("login-usuario-warzone")?.value || "";
+                    let p = document.getElementById("login-pass-warzone")?.value || "";
+                    mensaje += `🎮 *Warzone Vía:* ${metodoAccesoWarzone} | *Correo:* ${u} | *Clave:* ${p}%0A`;
+                } else if (tipo === 'freefire' || tipo === 'pubg' || tipo === 'bloodstrike' || tipo === 'delta' || tipo === 'arena') {
+                    let uid = document.getElementById(`login-uid-${tipo}`)?.value || "";
+                    mensaje += `🆔 *UID:* ${uid}%0A`;
+                } else if (tipo === 'mlbb') {
+                    let uid = document.getElementById(`login-uid-${tipo}`)?.value || "";
+                    let zona = document.getElementById(`login-zona-${tipo}`)?.value || "";
+                    mensaje += `🆔 *UID:* ${uid} | *Zona ID:* ${zona}%0A`;
+                } else if (tipo === 'roblox' || tipo === 'tiktok') {
+                    let u = document.getElementById(`login-usuario-${tipo}`)?.value || "";
+                    let p = document.getElementById(`login-pass-${tipo}`)?.value || "";
+                    mensaje += `👤 *Usr:* ${u} | *Clave:* ${p}%0A`;
+                } else if (tipo === 'royale' || tipo === 'clash' || tipo === 'zinli') {
+                    let c = document.getElementById(`login-correo-${tipo}`)?.value || "";
+                    mensaje += `📧 *Correo:* ${c}%0A`;
+                }
+            });
+
+            mensaje += `%0A------------------------%0A`;
+            mensaje += `💰 *TOTAL USD:* $${sumaUsd.toFixed(2)}%0A`;
+            mensaje += `💰 *TOTAL BS:* ${sumaBs.toFixed(2)} Bs`;
+
+            window.open(`https://wa.me/584226101249?text=${mensaje}`, '_blank');
+        }
+
+        function alternarPassword(idInput, boton) {
+            let input = document.getElementById(idInput);
+            if (input.type === "password") { input.type = "text"; boton.innerText = "Ocultar"; }
+            else { input.type = "password"; boton.innerText = "Mostrar"; }
+        }
+    </script>
+</body>
+</html>
