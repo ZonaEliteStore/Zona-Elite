@@ -838,21 +838,21 @@
                 { nombre: "80 CP", moneda: 80, precio: 1.30, etiqueta: "" },
                 { nombre: "420 CP", moneda: 420, precio: 6.00, etiqueta: "popular" },
                 { nombre: "880 CP", moneda: 880, precio: 11.00, etiqueta: "" },
-                { nombre: "2400 CP", moneda: 2400, precio: 26.50, etiqueta: "popular" },
-                { nombre: "5000 CP", moneda: 5000, precio: 50.00, etiqueta: "popular" },
-                { nombre: "10800 CP", moneda: 10800, precio: 99.00, etiqueta: "popular" },
+                { nombre: "2400 CP", moneda: 2400, precio: 27.50, etiqueta: "popular" },
+                { nombre: "5000 CP", moneda: 5000, precio: 55.00, etiqueta: "popular" },
+                { nombre: "10800 CP", moneda: 10800, precio: 110.00, etiqueta: "popular" },
                 { nombre: "Pase de Batalla", moneda: 1, precio: 3.50, etiqueta: "" },
                 { nombre: "Suministro Semanal", moneda: 1, precio: 1.40, etiqueta: "" },
                 { nombre: "Suministro Mensual", moneda: 1, precio: 5.50, etiqueta: "" }
             ],
             codm_convencional: [
-                { nombre: "2.400 CP (Convencional)", moneda: 2400, precio: 20.00, etiqueta: "oferta" },
-                { nombre: "5.000 CP (Convencional)", moneda: 5000, precio: 41.00, etiqueta: "oferta" },
-                { nombre: "10.800 CP (Convencional)", moneda: 10.800, precio: 82.00, etiqueta: "oferta" },
-                { nombre: "21.600 CP (Convencional)", moneda: 21.600, precio: 150.00, etiqueta: "oferta" },
-                { nombre: "32.400 CP (Convencional)", moneda: 32.400, precio: 235.00, etiqueta: "oferta" },
-                { nombre: "43.200 CP (Convencional)", moneda: 43.200, precio: 320.00, etiqueta: "oferta" },
-                { nombre: "54.000 CP (Convencional)", moneda: 54.000, precio: 400.00, etiqueta: "oferta" }
+                { nombre: "2.400 CP (Convencional)", moneda: 2400, precio: 25.00, etiqueta: "oferta" },
+                { nombre: "5.000 CP (Convencional)", moneda: 5000, precio: 50.00, etiqueta: "oferta" },
+                { nombre: "10.800 CP (Convencional)", moneda: 10.800, precio: 95.00, etiqueta: "oferta" },
+                { nombre: "21.600 CP (Convencional)", moneda: 21.600, precio: 160.00, etiqueta: "oferta" },
+                { nombre: "32.400 CP (Convencional)", moneda: 32.400, precio: 255.00, etiqueta: "oferta" },
+                { nombre: "43.200 CP (Convencional)", moneda: 43.200, precio: 350.00, etiqueta: "oferta" },
+                { nombre: "54.000 CP (Convencional)", moneda: 54.000, precio: 440.00, etiqueta: "oferta" }
             ],
             warzone: [
                 { nombre: "200 CP", moneda: 200, precio: 2.30, etiqueta: "" },
@@ -1733,7 +1733,7 @@
             let mensaje = `Hola ZONA ÉLITE STORE ⚡, quiero confirmar mi pedido:%0A%0A`;
             mensaje += `👤 *Cliente:* ${nombreCliente}%0A`;
             if(juegoActual === 'codm') {
-                let modoStr = (sistemaCodmActual === 'inmediato') ? '⚡ Sistema Inmediato (0-30 min)' : '🐢 Sistema Convencional (0-72 hrs)';
+                let modoStr = (sistemaCodmActual === 'inmediato') ? '⚡ Sistema Inmediato (0-30 min)' : '🐢 Sistema Convencional (1-24 hrs)';
                 mensaje += `⚙️ *Modalidad CODM:* ${modoStr}%0A`;
             }
             mensaje += `💳 *Método de Pago:* ${metodoPago}%0A`;
