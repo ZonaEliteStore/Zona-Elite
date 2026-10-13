@@ -845,14 +845,14 @@
                 { nombre: "Suministro Semanal", moneda: 1, precio: 1.40, etiqueta: "" },
                 { nombre: "Suministro Mensual", moneda: 1, precio: 5.50, etiqueta: "" }
             ],
-            codm_Oferta: [
-                { nombre: "2.400 CP (Oferta)", moneda: 2400, precio: 22.00, etiqueta: "Oferta" },
-                { nombre: "5.000 CP (Oferta)", moneda: 5000, precio: 45.00, etiqueta: "Oferta" },
-                { nombre: "10.800 CP (Oferta)", moneda: 10.800, precio: 90.00, etiqueta: "Oferta" },
-                { nombre: "21.600 CP (Oferta)", moneda: 21.600, precio: 160.00, etiqueta: "Oferta" },
-                { nombre: "32.400 CP (Oferta)", moneda: 32.400, precio: 255.00, etiqueta: "Oferta" },
-                { nombre: "43.200 CP (Oferta)", moneda: 43.200, precio: 350.00, etiqueta: "Oferta" },
-                { nombre: "54.000 CP (Oferta)", moneda: 54.000, precio: 440.00, etiqueta: "Oferta" }
+            codm_convencional: [
+                { nombre: "2.400 CP (convencional)", moneda: 2400, precio: 22.00, etiqueta: "oferta" },
+                { nombre: "5.000 CP (convencional)", moneda: 5000, precio: 45.00, etiqueta: "oferta" },
+                { nombre: "10.800 CP (convencional)", moneda: 10.800, precio: 90.00, etiqueta: "oferta" },
+                { nombre: "21.600 CP (convencional)", moneda: 21.600, precio: 160.00, etiqueta: "oferta" },
+                { nombre: "32.400 CP (convencional)", moneda: 32.400, precio: 255.00, etiqueta: "oferta" },
+                { nombre: "43.200 CP (convencional)", moneda: 43.200, precio: 350.00, etiqueta: "oferta" },
+                { nombre: "54.000 CP (convencional)", moneda: 54.000, precio: 440.00, etiqueta: "oferta" }
             ],
             warzone: [
                 { nombre: "200 CP", moneda: 200, precio: 2.30, etiqueta: "" },
@@ -971,7 +971,7 @@
 
         function calcularPreciosDesdeInicio() {
             for (let juego in catalogos) {
-                if (juego === 'codm_Oferta') continue;
+                if (juego === 'codm_convencional') continue;
                 let el = document.getElementById(`precio-desde-${juego}`);
                 if (el && catalogos[juego].length > 0) {
                     let minPrecioUsd = catalogos[juego][0].precio;
@@ -1101,7 +1101,7 @@
         function cambiarSistemaCodm(sistema) {
             sistemaCodmActual = sistema;
             let btnInmediato = document.getElementById("btn-sistema-inmediato");
-            let btnConvencional = document.getElementById("btn-sistema-Oferta");
+            let btnConvencional = document.getElementById("btn-sistema-convencional");
             let textoAviso = document.getElementById("texto-aviso-sistema");
             let tagModo = document.getElementById("tag-modo-actual");
             let fichaTiempo = document.getElementById("ficha-tiempo-entrega");
@@ -1116,12 +1116,12 @@
             } else {
                 btnConvencional.classList.add("active");
                 btnInmediato.classList.remove("active");
-                textoAviso.innerHTML = `<b>Sistema Oferta:</b> Tu pedido será procesado y acreditado en un tiempo estimado de 1 a 24 horas.`;
+                textoAviso.innerHTML = `<b>Sistema Convencional:</b> Tu pedido será procesado y acreditado en un tiempo estimado de 1 a 24 horas.`;
                 tagModo.className = "tag-instantaneo";
                 tagModo.style.background = "rgba(251, 191, 36, 0.15)";
                 tagModo.style.color = "var(--accent-gold)";
                 tagModo.style.borderColor = "var(--accent-gold)";
-                tagModo.innerHTML = "🐢 Oferta (1-24 hrs)";
+                tagModo.innerHTML = "🐢 convencional (1-24 hrs)";
                 if(fichaTiempo) fichaTiempo.innerText = "Entre 1 a 24 horas";
             }
             renderizarPaquetesCatalogo('codm');
