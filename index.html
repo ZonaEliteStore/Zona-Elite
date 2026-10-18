@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZONA ÉLITE STORE | Elite Gaming Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #070b14; --bg-surface: #0d1527; --card-bg: rgba(17, 27, 48, 0.7);
+            --card-border: rgba(56, 189, 248, 0.15); --card-border-hover: rgba(56, 189, 248, 0.6);
+            --accent-blue: #38bdf8; --accent-cyan: #06b6d4; --accent-green: #22c55e;
+            --text-main: #f8fafc; --text-sec: #94a3b8; --radius-main: 16px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        body {
+            background-color: var(--bg-dark) !important; color: var(--text-main) !important;
+            display: flex; flex-direction: column; min-height: 100vh; padding-bottom: 230px;
+            background-image: radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.04) 0%, transparent 40%),
+                              radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.04) 0%, transparent 40%);
+        }
+
+        /* HEADER & SEARCH */
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 16px 6%; background: rgba(13, 21, 39, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(56, 189, 248, 0.12); position: sticky; top: 0; z-index: 1100; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo img { width: 44px; height: 44px; object-fit: cover; border-radius: 12px; border: 1.5px solid var(--accent-blue); box-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
+        .logo h1 { color: var(--text-main); font-size: 1.15rem; font-weight: 800; }
+        .logo h1 span { color: var(--accent-blue); text-shadow: 0 0 12px rgba(56, 189, 248, 0.4); }
+
+        .search-container { padding: 18px 5% 0 5%; max-width: 1200px; margin: 0 auto; width: 100%; }
+        .search-box { position: relative; width: 100%; }
+        .search-box i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--accent-blue); }
+        .search-box input { width: 100%; padding: 12px 16px 12px 42px; border-radius: 12px; border: 1px solid var(--card-border); background: var(--card-bg); backdrop-filter: blur(8px); color: white; font-size: 0.85rem; outline: none; transition: 0.3s; }
+        .search-box input:focus { border-color: var(--accent-blue); box-shadow: 0 0 20px rgba(56, 189, 248, 0.2); }
+
+        .hero { text-align: center; padding: 16px 20px 10px 20px; }
+        .hero h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; color: var(--text-main); }
+        .hero p { color: var(--text-sec); font-size: 0.82rem; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; flex: 1; width: 100%; }
+        .section-title { margin: 20px 0 14px 0; font-size: 1.1rem; font-weight: 700; border-left: 3px solid var(--accent-blue); padding-left: 10px; color: var(--text-main); display: flex; align-items: center; gap: 8px; }
+
+        /* GRID PRODUCTOS */
+        .products-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 20px; }
+        @media (min-width: 768px) { .products-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; } }
+        @media (min-width: 1024px) { .products-grid { grid-template-columns: repeat(4, 1fr); } }
+
+        .product-card { background: var(--card-bg); backdrop-filter: blur(10px); border: 1px solid var(--card-border); border-radius: var(--radius-main); padding: 14px; text-align: center; transition: 0.35s; cursor: pointer; color: var(--text-main); display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; }
+        .product-card:hover { transform: translateY(-4px); border-color: var(--card-border-hover); box-shadow: 0 8px 30px rgba(56, 189, 248, 0.2); background: rgba(22, 35, 61, 0.85); }
+        .product-card img { width: 60px; height: 60px; object-fit: cover; margin: 0 auto 10px auto; border-radius: 12px; border: 1px solid var(--card-border-hover); box-shadow: 0 0 10px rgba(0,0,0,0.5); }
+        .product-card h3 { font-size: 0.92rem; font-weight: 600; margin-bottom: 4px; line-height: 1.3; }
+        .price-desde { font-size: 0.85rem; color: var(--accent-blue); font-weight: 800; margin-bottom: 10px; }
+
+        .select-btn, .add-to-cart-btn { background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan)); color: #070b14; border: none; padding: 8px 12px; border-radius: 10px; cursor: pointer; font-weight: 700; width: 100%; font-size: 0.78rem; transition: 0.3s; margin-top: 6px; }
+        .select-btn:hover, .add-to-cart-btn:hover { opacity: 0.9; transform: scale(1.02); }
+
+        .badge-popular, .badge-oferta { position: absolute; top: 10px; right: 10px; background: linear-gradient(135deg, #ef4444, #dc2626); color: white; font-size: 0.6rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; text-transform: uppercase; }
+
+        /* HEADER CATÁLOGO Y TABS DE SUBCATEGORÍA */
+        .game-header-box { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-main); padding: 18px; margin-bottom: 16px; display: flex; flex-direction: column; gap: 12px; }
+        .game-header-top { display: flex; align-items: center; gap: 14px; }
+        .game-header-top img { width: 55px; height: 55px; border-radius: 12px; border: 1px solid var(--card-border-hover); object-fit: cover; }
+        .game-header-info h3 { font-size: 1.05rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .back-btn { background: rgba(51, 65, 85, 0.5); color: white; border: 1px solid var(--card-border); padding: 8px 14px; border-radius: 10px; cursor: pointer; font-weight: 600; margin-bottom: 14px; display: inline-flex; align-items: center; gap: 8px; font-size: 0.82rem; transition: 0.3s; }
+        
+        .subcat-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 10px; scrollbar-width: none; }
+        .subcat-tabs::-webkit-scrollbar { display: none; }
+        .subcat-tab { background: rgba(15, 23, 42, 0.6); border: 1px solid #334155; border-radius: 10px; padding: 8px 14px; color: var(--text-sec); font-size: 0.75rem; font-weight: 600; cursor: pointer; white-space: nowrap; transition: 0.3s; }
+        .subcat-tab.active { background: rgba(56, 189, 248, 0.15); border-color: var(--accent-blue); color: white; }
+
+        /* CHECKOUT */
+        .checkout-section-box { background: var(--card-bg); border: 1.5px solid var(--card-border-hover); border-radius: 20px; padding: 22px; margin-top: 22px; }
+        .input-container { margin-bottom: 16px; text-align: left; }
+        .input-container label { font-size: 0.82rem; font-weight: 600; color: #cbd5e1; display: flex; align-items: center; gap: 7px; margin-bottom: 7px; }
+        .input-container input, .input-container select { width: 100%; padding: 13px 14px; border-radius: 12px; border: 1px solid #334155; background: rgba(15, 23, 42, 0.8); color: white; font-size: 0.88rem; outline: none; transition: 0.3s; }
+        .input-container input:focus, .input-container select:focus { border-color: var(--accent-blue); }
+
+        .payment-info-box { background: rgba(15, 23, 42, 0.8); border: 1px solid var(--card-border-hover); padding: 16px; border-radius: 12px; margin-bottom: 14px; font-size: 0.85rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 12px; }
+        .copy-btn-box { background: var(--accent-blue); color: #070b14; border: none; padding: 6px 12px; border-radius: 8px; font-weight: 700; font-size: 0.72rem; cursor: pointer; }
+
+        .section-buttons { display: flex; gap: 12px; margin-top: 18px; }
+        .section-buttons button { flex: 1; padding: 13px; border-radius: 12px; font-weight: 700; cursor: pointer; border: none; font-size: 0.88rem; transition: 0.3s; }
+        .btn-primary { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; }
+        .btn-secondary { background: rgba(51, 65, 85, 0.7); color: white; border: 1px solid #475569; }
+
+        /* OVERLAYS Y CARRITO */
+        .loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(7, 11, 20, 0.85); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 4000; flex-direction: column; gap: 14px; }
+        .spinner { width: 48px; height: 48px; border: 4px solid var(--card-border); border-top: 4px solid var(--accent-blue); border-radius: 50%; animation: spin 0.8s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .bottom-cart-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(13, 21, 39, 0.95); border-top: 1.5px solid var(--card-border-hover); padding: 12px 5%; z-index: 1000; display: none; }
+        .cart-container-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 12px; max-width: 1200px; margin: 0 auto; align-items: center; }
+        .checkout-btn { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; border: none; padding: 10px 14px; border-radius: 10px; font-weight: 700; cursor: pointer; font-size: 0.85rem; width: 100%; margin-top: 6px; }
+
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: #22c55e; color: white; padding: 9px 18px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; z-index: 6000; opacity: 0; transition: 0.3s; }
+        .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+        /* TABS LOGIN MANUAL */
+        .login-tabs { display: flex; gap: 8px; margin-bottom: 12px; }
+        .login-tab { background: rgba(15, 23, 42, 0.8); border: 1px solid #334155; padding: 8px 12px; border-radius: 8px; font-size: 0.75rem; color: var(--text-sec); cursor: pointer; flex: 1; text-align: center; font-weight: 600; transition: 0.3s; }
+        .login-tab.active { background: rgba(56, 189, 248, 0.15); border-color: var(--accent-blue); color: white; }
+    </style>
+</head>
+<body>
+
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <div class="loading-text" id="loading-message" style="font-weight: 700;">Conectando...</div>
+    </div>
+    <div id="copy-toast" class="toast"><i class="fa-solid fa-check"></i> ¡Copiado!</div>
+
+    <header class="navbar">
+        <div class="logo">
+            <img src="https://i.postimg.cc/mkvZC7cf/IMG-20260723-WA0011.jpg" alt="Logo Zona Élite">
+            <h1>ZONA ÉLITE <span>STORE</span> ⚡</h1>
+        </div>
+    </header>
+
+    <div class="search-container">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="buscador-juegos" placeholder="Busca tu juego o servicio..." oninput="filtrarJuegos()">
+        </div>
+    </div>
+
+    <section class="hero">
+        <h2>Recargas Instantáneas 🎮</h2>
+        <p>Precios actualizados en tiempo real y despacho garantizado.</p>
+    </section>
+
+    <main class="container">
+        
+        <!-- VISTA 1: CATEGORÍAS (JUEGOS) -->
+        <div id="vista-categorias">
+            <h3 class="section-title"><i class="fa-solid fa-gamepad"></i> Categorías Disponibles</h3>
+            <div class="products-grid" id="grid-categorias">
+                <p style="color:var(--text-sec); grid-column: 1/-1; text-align:center;">Cargando catálogo desde el servidor...</p>
+            </div>
+        </div>
+
+        <!-- VISTA 2: PRODUCTOS -->
+        <div id="vista-catalogo" style="display: none;">
+            <button class="back-btn" onclick="volverACategorias()"><i class="fa-solid fa-arrow-left"></i> Volver</button>
+            
+            <div class="game-header-box">
+                <div class="game-header-top">
+                    <img id="game-header-img" src="" alt="Juego">
+                    <div class="game-header-info">
+                        <h3 id="game-header-title">Juego</h3>
+                        <div style="color: #22c55e; font-size: 0.75rem; font-weight: 600;" id="game-header-badge"><i class="fa-solid fa-shield-halved"></i> Servicio Verificado</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TABS DE SUBCATEGORÍA (Aparecen solo si el juego tiene) -->
+            <div id="contenedor-subcategorias" class="subcat-tabs" style="display: none;">
+                <div class="subcat-tab active" onclick="filtrarSubcategoria('inmediata', this)">Entrega Inmediata</div>
+                <div class="subcat-tab" onclick="filtrarSubcategoria('ofertas', this)">Ofertas (Lento)</div>
+                <div class="subcat-tab" onclick="filtrarSubcategoria('otros', this)">Pases / Otros</div>
+            </div>
+
+            <h3 class="section-title"><i class="fa-solid fa-list-check"></i> Selecciona tu paquete</h3>
+            
+            <!-- CONTENEDOR ESPECIAL ZINLI -->
+            <div id="contenedor-zinli" style="display: none; background: rgba(15,23,42,0.6); padding: 20px; border-radius: 16px; border: 1px solid var(--accent-blue); text-align: center;">
+                <img src="https://i.postimg.cc/xJnZ9htd/images-(2).png" style="width:60px; border-radius:10px; margin-bottom:10px;">
+                <h3 style="color: white; margin-bottom: 5px;">Calculadora Zinli (+20%)</h3>
+                <p style="font-size:0.8rem; color:var(--text-sec); margin-bottom:15px;">Ingresa los dólares que deseas recibir en tu cuenta.</p>
+                <div class="input-container" style="max-width: 250px; margin: 0 auto 15px auto;">
+                    <label style="justify-content:center;">Dólares a Recibir ($):</label>
+                    <input type="number" id="monto-zinli" min="1" step="1" placeholder="Ej: 5" style="text-align:center; font-size:1.1rem; font-weight:bold;" oninput="calcularZinliUI()">
+                </div>
+                <p style="font-size:0.9rem; color:var(--accent-blue); font-weight:800; margin-bottom:15px;">Monto a Pagar: <span id="zinli-bs-total">0.00</span> Bs</p>
+                <button class="btn-primary" style="padding:10px 20px; border-radius:10px; border:none; font-weight:bold; cursor:pointer;" onclick="agregarZinliAlCarro()">Agregar al Pedido</button>
+            </div>
+
+            <!-- CONTENEDOR PRODUCTOS NORMALES -->
+            <div id="contenedor-paquetes" class="products-grid"></div>
+        </div>
+
+        <!-- VISTA 3: MÉTODO DE PAGO -->
+        <div id="vista-pago" style="display: none;" class="checkout-section-box">
+            <h3 style="margin-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;"><i class="fa-solid fa-wallet"></i> 1. Método de Pago</h3>
+            <div class="input-container">
+                <select id="metodo-pago" onchange="mostrarDatosPagoVertical()">
+                    <option value="Pago Móvil">Pago Móvil (Banco Nacional de Crédito)</option>
+                    <option value="Transferencia Bancaria">Transferencia Bancaria</option>
+                    <option value="Binance Pay">Binance Pay</option>
+                </select>
+            </div>
+            <div id="info-datos-pago-vertical" class="payment-info-box"></div>
+            <div class="input-container">
+                <label><i class="fa-solid fa-receipt"></i> Referencia de pago / Últimos 4 dígitos:</label>
+                <input type="text" id="nro-referencia" placeholder="Ej: 4589">
+            </div>
+            <div class="section-buttons">
+                <button class="btn-secondary" onclick="volverAlCatalogo()">Volver</button>
+                <button class="btn-primary" onclick="irAPasoDatos()">Siguiente: Datos 🎮</button>
+            </div>
+        </div>
+
+        <!-- VISTA 4: DATOS DEL CLIENTE Y CUENTA -->
+        <div id="vista-datos-recarga" style="display: none;" class="checkout-section-box">
+            <h3 style="margin-bottom:15px; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;"><i class="fa-solid fa-user-pen"></i> 2. Datos para el Despacho</h3>
+            
+            <div class="input-container">
+                <label>Tu Nombre y Apellido:</label>
+                <input type="text" id="cliente-nombre" placeholder="Ej: Carlos Pérez">
+            </div>
+            <div class="input-container">
+                <label><i class="fa-solid fa-envelope"></i> Correo Electrónico (Para enviarte la factura):</label>
+                <input type="email" id="cliente-correo" placeholder="ejemplo@gmail.com">
+            </div>
+            
+            <div class="input-container" id="box-whatsapp" style="background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); padding: 12px; border-radius: 10px;">
+                <label style="color: #22c55e;"><i class="fa-brands fa-whatsapp"></i> Número de WhatsApp / Teléfono:</label>
+                <p style="font-size:0.7rem; color:var(--text-sec); margin-bottom:8px;" id="texto-aviso-wa">Obligatorio para enviarte notificaciones de tu pedido.</p>
+                <input type="text" id="cliente-telefono" placeholder="Ej: 04141234567">
+            </div>
+
+            <!-- CONTENEDOR DINÁMICO DE DATOS DE JUEGO (UID, PASS, ETC) -->
+            <div id="campos-dinamicos-juego" style="background: rgba(15, 23, 42, 0.5); padding: 15px; border-radius: 12px; margin-top:15px;"></div>
+
+            <div class="section-buttons">
+                <button class="btn-secondary" onclick="document.getElementById('vista-datos-recarga').style.display='none'; document.getElementById('vista-pago').style.display='block';">Volver</button>
+                <button class="btn-primary" onclick="finalizarCompra()">Confirmar Pedido 🚀</button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- BARRA INFERIOR DEL CARRITO -->
+    <div id="bottom-cart-bar" class="bottom-cart-bar">
+        <div class="cart-container-grid">
+            <div id="cart-items" style="font-size: 0.78rem; color: #cbd5e1; max-height: 60px; overflow-y:auto;"></div>
+            <div style="text-align:right;">
+                <div style="font-size: 0.72rem; color: var(--text-sec);">Total: $<span id="cart-total-usd">0.00</span></div>
+                <div style="color: var(--accent-blue); font-size: 0.95rem; font-weight: 800;"><span id="cart-total-bs">0.00</span> Bs</div>
+                <button class="checkout-btn" onclick="iniciarCheckout()">Pagar Ahora</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, doc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js";
+
+        // CONEXIÓN FIREBASE
+        const firebaseConfig = {
+            apiKey: "AIzaSyBpDF3I27ePNwp_SUBnDwh0s0Is-AWlavg",
+            authDomain: "zona-elite-store.firebaseapp.com",
+            projectId: "zona-elite-store",
+            storageBucket: "zona-elite-store.firebasestorage.app",
+            messagingSenderId: "1085386492535",
+            appId: "1:1085386492535:web:038a1d2402942c7cca9472"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // ESTADO DE LA TIENDA
+        window.TASA_GLOBAL = 1;
+        window.juegosRegistrados = [];
+        window.catalogoProductos = [];
+        window.carrito = [];
+        window.juegoActualObj = null;
+        window.subcategoriaActiva = 'inmediata';
+        window.metodoLoginActivo = '';
+
+        // 1. ESCUCHAR TASA
+        onSnapshot(doc(db, "configuracion", "global"), (docSnap) => {
+            if (docSnap.exists()) {
+                window.TASA_GLOBAL = docSnap.data().tasa;
+                renderizarCarrito();
+                if(window.juegoActualObj) renderizarPaquetes();
+            }
+        });
+
+        // 2. ESCUCHAR JUEGOS
+        onSnapshot(collection(db, "juegos"), (snapshot) => {
+            window.juegosRegistrados = [];
+            let grid = document.getElementById("grid-categorias");
+            grid.innerHTML = "";
+            snapshot.forEach(docSnap => {
+                let j = docSnap.data(); j.id = docSnap.id;
+                window.juegosRegistrados.push(j);
+                
+                let badgeTxt = j.tipoDespacho === 'api' ? '⚡ ID Rápido' : (j.tipoDespacho === 'netflix' ? '🍿 Suscripción' : '🎮 Cuenta');
+                
+                grid.innerHTML += `
+                    <div class="product-card" data-nombre="${j.nombre.toLowerCase()}" onclick="abrirCatalogo('${j.id}')">
+                        <span style="position:absolute; top:8px; right:8px; background:rgba(56,189,248,0.2); color:var(--accent-blue); font-size:0.6rem; padding:3px 6px; border-radius:6px; font-weight:bold;">${badgeTxt}</span>
+                        <img src="${j.imgUrl}" alt="${j.nombre}">
+                        <h3>${j.nombre}</h3>
+                        <button class="select-btn">Ver Catálogo →</button>
+                    </div>
+                `;
+            });
+            document.getElementById("loading-overlay").style.display = "none";
+        });
+
+        // 3. ESCUCHAR PRODUCTOS
+        onSnapshot(collection(db, "catalogo"), (snapshot) => {
+            window.catalogoProductos = [];
+            snapshot.forEach(docSnap => {
+                let p = docSnap.data(); p.id = docSnap.id;
+                window.catalogoProductos.push(p);
+            });
+            if(window.juegoActualObj) renderizarPaquetes();
+        });
+
+        // NAVEGACIÓN PRINCIPAL
+        window.abrirCatalogo = function(idJuego) {
+            window.juegoActualObj = window.juegosRegistrados.find(j => j.id === idJuego);
+            document.getElementById("vista-categorias").style.display = "none";
+            document.getElementById("vista-catalogo").style.display = "block";
+            document.getElementById("game-header-title").innerText = window.juegoActualObj.nombre;
+            document.getElementById("game-header-img").src = window.juegoActualObj.imgUrl;
+
+            // Configurar vista especial para ZINLI
+            if(window.juegoActualObj.tipoDespacho === 'zinli') {
+                document.getElementById("contenedor-zinli").style.display = "block";
+                document.getElementById("contenedor-paquetes").style.display = "none";
+                document.getElementById("contenedor-subcategorias").style.display = "none";
+            } else {
+                document.getElementById("contenedor-zinli").style.display = "none";
+                document.getElementById("contenedor-paquetes").style.display = "grid";
+                
+                // Mostrar tabs si hay productos con subcategorías diferentes
+                let prods = window.catalogoProductos.filter(p => p.juegoId === idJuego);
+                let tieneSubcat = prods.some(p => p.subCategoria && p.subCategoria !== 'inmediata');
+                document.getElementById("contenedor-subcategorias").style.display = tieneSubcat ? "flex" : "none";
+                
+                filtrarSubcategoria('inmediata', document.querySelector('.subcat-tab'));
+            }
+        }
+
+        window.volverACategorias = function() {
+            window.juegoActualObj = null;
+            document.getElementById("vista-catalogo").style.display = "none";
+            document.getElementById("vista-categorias").style.display = "block";
+        }
+
+        window.filtrarSubcategoria = function(subcat, element) {
+            window.subcategoriaActiva = subcat;
+            document.querySelectorAll('.subcat-tab').forEach(t => t.classList.remove('active'));
+            if(element) element.classList.add('active');
+            renderizarPaquetes();
+        }
+
+        window.renderizarPaquetes = function() {
+            if(!window.juegoActualObj || window.juegoActualObj.tipoDespacho === 'zinli') return;
+            
+            let contenedor = document.getElementById("contenedor-paquetes");
+            contenedor.innerHTML = "";
+            
+            let prods = window.catalogoProductos.filter(p => 
+                p.juegoId === window.juegoActualObj.id && 
+                (!p.subCategoria || p.subCategoria === window.subcategoriaActiva)
+            );
+
+            if(prods.length === 0) {
+                contenedor.innerHTML = "<p style='color:var(--text-sec); grid-column:1/-1; text-align:center;'>No hay paquetes en esta categoría.</p>";
+                return;
+            }
+
+            prods.forEach(prod => {
+                let precioBs = (prod.precioUsd * window.TASA_GLOBAL).toLocaleString('es-VE', {minimumFractionDigits: 2});
+                let badge = prod.etiqueta === "popular" ? `<div class="badge-popular">Popular</div>` : 
+                            prod.etiqueta === "oferta" ? `<div class="badge-oferta">Oferta</div>` : "";
+                
+                let pJSON = JSON.stringify(prod).replace(/"/g, '&quot;');
+                contenedor.innerHTML += `
+                    <div class="product-card">
+                        ${badge}
+                        ${prod.imgUrl ? `<img src="${prod.imgUrl}" alt="Img">` : ''}
+                        <h3>${prod.nombre}</h3>
+                        <div class="price-desde">${precioBs} Bs</div>
+                        <button class="add-to-cart-btn" onclick="agregarAlCarro(${pJSON})">Agregar al Pedido</button>
+                    </div>
+                `;
+            });
+        }
+
+        // LÓGICA ZINLI (COMISIÓN 20%)
+        window.calcularZinliUI = function() {
+            let usd = parseFloat(document.getElementById("monto-zinli").value) || 0;
+            let comision = usd * 0.20;
+            let totalPagarUsd = usd + comision;
+            let totalBs = totalPagarUsd * window.TASA_GLOBAL;
+            document.getElementById("zinli-bs-total").innerText = totalBs.toLocaleString('es-VE', {minimumFractionDigits: 2});
+        }
+
+        window.agregarZinliAlCarro = function() {
+            let usd = parseFloat(document.getElementById("monto-zinli").value);
+            if(!usd || usd < 1) return alert("Monto mínimo $1 USD.");
+            
+            let totalUsd = usd + (usd * 0.20);
+            let p = {
+                juegoId: window.juegoActualObj.id,
+                juegoNombre: "Zinli",
+                juegoTipo: "zinli",
+                nombre: `Recarga Zinli ($${usd} Neto)`,
+                precioUsd: totalUsd,
+                gananciaUsd: usd * 0.20
+            };
+            agregarAlCarro(p);
+        }
+
+        // CARRITO
+        window.agregarAlCarro = function(prod) {
+            if(window.carrito.length > 0 && window.carrito[0].juegoId !== window.juegoActualObj.id) {
+                return alert("Solo puedes agregar artículos de un mismo servicio a la vez por seguridad.");
+            }
+            prod.juegoTipo = window.juegoActualObj.tipoDespacho;
+            prod.metodosLogin = window.juegoActualObj.metodosLogin || [];
+            window.carrito.push(prod);
+            renderizarCarrito();
+        }
+
+        window.eliminarItem = function(index) {
+            window.carrito.splice(index, 1);
+            renderizarCarrito();
+        }
+
+        window.renderizarCarrito = function() {
+            let barra = document.getElementById("bottom-cart-bar");
+            let cont = document.getElementById("cart-items");
+            
+            if (window.carrito.length === 0) { barra.style.display = "none"; return; }
+            barra.style.display = "block";
+            
+            let sumUsd = 0, sumBs = 0;
+            cont.innerHTML = "";
+            window.carrito.forEach((p, i) => {
+                sumUsd += p.precioUsd;
+                sumBs += (p.precioUsd * window.TASA_GLOBAL);
+                cont.innerHTML += `
+                    <div style="display:flex; justify-content:space-between; margin-bottom:4px; align-items:center;">
+                        <span><i class="fa-solid fa-check" style="color:var(--accent-green)"></i> ${p.nombre}</span>
+                        <button onclick="eliminarItem(${i})" style="background:var(--accent-red); color:white; border:none; border-radius:4px; padding:2px 6px; font-weight:bold; cursor:pointer;">X</button>
+                    </div>
+                `;
+            });
+            document.getElementById("cart-total-usd").innerText = sumUsd.toFixed(2);
+            document.getElementById("cart-total-bs").innerText = sumBs.toLocaleString('es-VE', {minimumFractionDigits: 2});
+        }
+
+        // CHECKOUT: PASO 1 (MÉTODO DE PAGO)
+        window.iniciarCheckout = function() {
+            document.getElementById("vista-catalogo").style.display = "none";
+            document.getElementById("vista-pago").style.display = "block";
+            document.getElementById("bottom-cart-bar").style.display = "none";
+            mostrarDatosPagoVertical();
+        }
+
+        window.volverAlCatalogo = function() {
+            document.getElementById("vista-pago").style.display = "none";
+            document.getElementById("vista-catalogo").style.display = "block";
+            renderizarCarrito();
+        }
+
+        window.mostrarDatosPagoVertical = function() {
+            let m = document.getElementById("metodo-pago").value;
+            let c = document.getElementById("info-datos-pago-vertical");
+            let tBs = window.carrito.reduce((acc, p) => acc + (p.precioUsd * window.TASA_GLOBAL), 0).toLocaleString('es-VE', {minimumFractionDigits:2});
+            let tUsd = window.carrito.reduce((acc, p) => acc + p.precioUsd, 0).toFixed(2);
+            
+            if (m === "Pago Móvil") {
+                c.innerHTML = `<b style="color:var(--accent-blue);">Pagar: ${tBs} Bs</b><br>Banco: BNC (0191)<br>Tel: 0422-610-1249<br>Rif: J508712137`;
+            } else if (m === "Transferencia Bancaria") {
+                c.innerHTML = `<b style="color:var(--accent-blue);">Pagar: ${tBs} Bs</b><br>Banco: BNC<br>Cta: 01910317012100168855<br>Rif: J508712137`;
+            } else {
+                c.innerHTML = `<b style="color:#22c55e;">Pagar: ${tUsd} USDT</b><br>Email: zonaelite2003@gmail.com<br>ID: 1275558915`;
+            }
+        }
+
+        // CHECKOUT: PASO 2 (DATOS DE CUENTA)
+        window.irAPasoDatos = function() {
+            let ref = document.getElementById("nro-referencia").value.trim();
+            if(!ref) return alert("Ingresa la referencia de pago.");
+            
+            document.getElementById("vista-pago").style.display = "none";
+            document.getElementById("vista-datos-recarga").style.display = "block";
+
+            // Cargar datos previos
+            document.getElementById("cliente-nombre").value = localStorage.getItem("ze_nombre") || "";
+            document.getElementById("cliente-correo").value = localStorage.getItem("ze_correo") || "";
+            document.getElementById("cliente-telefono").value = localStorage.getItem("ze_telefono") || "";
+
+            let tipoGlobal = window.carrito[0].juegoTipo;
+            let boxJuego = document.getElementById("campos-dinamicos-juego");
+            boxJuego.innerHTML = "";
+
+            // Adaptar texto de WhatsApp si es Netflix
+            let textoWa = document.getElementById("texto-aviso-wa");
+            if(tipoGlobal === 'netflix') {
+                textoWa.innerHTML = "<b>Importante:</b> Coloca tu WhatsApp correcto. Lo usaremos para enviarte los datos de tu pantalla y el recordatorio de renovación mensual.";
+                textoWa.style.color = "#22c55e";
+            } else {
+                textoWa.innerHTML = "Para enviarte el recibo y contactarte si hay un problema.";
+                textoWa.style.color = "var(--text-sec)";
+            }
+
+            // Renderizar campos según el tipo de juego
+            if(tipoGlobal === 'api') {
+                boxJuego.innerHTML = `
+                    <label style="font-size:0.8rem; color:var(--accent-blue); font-weight:bold; margin-bottom:5px; display:block;">Datos del Jugador</label>
+                    <input type="text" id="ipt-uid" class="input-container input" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; background:var(--bg-dark); color:white; border:1px solid #334155;" placeholder="ID de Usuario (UID)">
+                    <input type="text" id="ipt-nick" class="input-container input" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; background:var(--bg-dark); color:white; border:1px solid #334155;" placeholder="Nickname exacto">
+                `;
+            } 
+            else if(tipoGlobal === 'manual') {
+                let metodos = window.carrito[0].metodosLogin || ["Usuario/Contraseña"];
+                let tabsHtml = metodos.map((m, i) => `<div class="login-tab ${i===0?'active':''}" onclick="setLoginTab('${m}', this)">${m}</div>`).join('');
+                window.metodoLoginActivo = metodos[0];
+
+                boxJuego.innerHTML = `
+                    <label style="font-size:0.8rem; color:var(--accent-blue); font-weight:bold; margin-bottom:5px; display:block;">Método de Acceso a tu Cuenta</label>
+                    <div class="login-tabs">${tabsHtml}</div>
+                    <input type="text" id="ipt-usr" class="input-container input" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; background:var(--bg-dark); color:white; border:1px solid #334155;" placeholder="Correo o Usuario">
+                    <input type="password" id="ipt-pass" class="input-container input" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; background:var(--bg-dark); color:white; border:1px solid #334155;" placeholder="Contraseña">
+                    <input type="text" id="ipt-nick" class="input-container input" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; background:var(--bg-dark); color:white; border:1px solid #334155;" placeholder="Nickname / Nombre en el juego">
+                `;
+            }
+            else if (tipoGlobal === 'zinli') {
+                boxJuego.innerHTML = `
+                    <label style="font-size:0.8rem; color:var(--accent-blue); font-weight:bold; margin-bottom:5px; display:block;">Cuenta Zinli Destino</label>
+                    <input type="email" id="ipt-usr" class="input-container input" style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; background:var(--bg-dark); color:white; border:1px solid #334155;" placeholder="Correo electrónico de la cuenta Zinli">
+                `;
+            }
+            else if (tipoGlobal === 'netflix') {
+                boxJuego.innerHTML = `<p style="font-size:0.8rem; color:var(--text-sec);">Las pantallas se asignarán al número de WhatsApp proporcionado arriba.</p>`;
+            }
+        }
+
+        window.setLoginTab = function(metodo, btn) {
+            window.metodoLoginActivo = metodo;
+            document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        // ENVÍO FINAL
+        window.finalizarCompra = async function() {
+            let nom = document.getElementById("cliente-nombre").value.trim();
+            let cor = document.getElementById("cliente-correo").value.trim();
+            let tel = document.getElementById("cliente-telefono").value.trim();
+            let ref = document.getElementById("nro-referencia").value.trim();
+            let met = document.getElementById("metodo-pago").value;
+
+            if(!nom || !cor || !tel) return alert("Por favor, llena tus datos personales, correo y WhatsApp para poder despachar tu pedido.");
+
+            localStorage.setItem("ze_nombre", nom);
+            localStorage.setItem("ze_correo", cor);
+            localStorage.setItem("ze_telefono", tel);
+
+            let tipoGlobal = window.carrito[0].juegoTipo;
+            let detalles = {};
+            
+            // Validar campos según juego
+            if(tipoGlobal === 'api') {
+                let u = document.getElementById("ipt-uid").value.trim();
+                let n = document.getElementById("ipt-nick").value.trim();
+                if(!u) return alert("El UID es obligatorio para recargas directas.");
+                detalles = { uid: u, nickname: n };
+            } else if (tipoGlobal === 'manual') {
+                let u = document.getElementById("ipt-usr").value.trim();
+                let p = document.getElementById("ipt-pass").value.trim();
+                let n = document.getElementById("ipt-nick").value.trim();
+                if(!u || !p) return alert("Debes colocar el usuario y la contraseña para que podamos ingresar a recargar.");
+                detalles = { usuario: u, pass: p, nickname: n, metodoAcceso: window.metodoLoginActivo };
+            } else if (tipoGlobal === 'zinli') {
+                let u = document.getElementById("ipt-usr").value.trim();
+                if(!u) return alert("Coloca el correo de la cuenta Zinli.");
+                detalles = { usuario: u };
+            }
+
+            let sumaUsd = 0, sumaBs = 0, sumGanancia = 0;
+            window.carrito.forEach(p => {
+                sumaUsd += p.precioUsd;
+                sumaBs += (p.precioUsd * window.TASA_GLOBAL);
+                sumGanancia += (p.gananciaUsd || 0);
+            });
+
+            document.getElementById("loading-message").innerText = "Procesando Orden...";
+            document.getElementById("loading-overlay").style.display = "flex";
+
+            try {
+                let objJuegoNombre = window.carrito[0].juegoNombre;
+                let payloadCuenta = {};
+                payloadCuenta[objJuegoNombre] = detalles;
+
+                await addDoc(collection(db, "pedidos"), {
+                    cliente: nom,
+                    emailCliente: cor,
+                    telefonoCliente: tel,
+                    tipoGlobal: tipoGlobal,
+                    metodoPago: met,
+                    referencia: ref,
+                    totalUsd: sumaUsd,
+                    totalBs: sumaBs,
+                    gananciaTotalUsd: sumGanancia,
+                    articulos: window.carrito,
+                    detallesCuentas: payloadCuenta,
+                    estado: "pendiente",
+                    fecha: serverTimestamp()
+                });
+
+                document.getElementById("loading-overlay").style.display = "none";
+                alert("✅ ¡Pedido Enviado con Éxito!\n\nTu orden ya está en nuestro sistema. La verificaremos en breve y te enviaremos la factura al correo.");
+                window.carrito = [];
+                window.location.reload();
+
+            } catch(e) {
+                document.getElementById("loading-overlay").style.display = "none";
+                alert("Error de conexión. Intenta de nuevo.");
+            }
+        }
+    </script>
+</body>
+</html>
