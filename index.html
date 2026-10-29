@@ -1244,7 +1244,7 @@
 
         function agregarZinliAlCarro() {
             let dolares = parseFloat(document.getElementById("monto-zinli").value);
-            if (!dolares || dolares < 1) { alert("El monto mínimo de recarga Zinli es de $1 USD."); return; }
+            if (!dolares || dolares < 1) { alert("El monto mínimo de recarga Zinli es de $10 USD."); return; }
             if (carrito.length > 0 && carrito[0].tipo !== 'zinli') { alert("Solo puedes realizar compras de una sola categoría a la vez."); return; }
 
             let comision = Math.round(fn_comision(dolares) * 100) / 100;
@@ -1423,16 +1423,16 @@
                         <span style="font-size: 0.82rem; color: var(--accent-blue);"><b>Monto a pagar:</b> ${formatoBs} Bs</span>
                     </div>
                     <div class="payment-row-item">
-                        <span><b>Banco:</b> Banco Nacional de Crédito (0191)</span>
-                        <button class="copy-btn-box" onclick="copiarAlPortapapeles('0191', 'Banco')"><i class="fa-solid fa-copy"></i> Copiar</button>
+                        <span><b>Banco:</b> Banesco (0134)</span>
+                        <button class="copy-btn-box" onclick="copiarAlPortapapeles('0134', 'Banco')"><i class="fa-solid fa-copy"></i> Copiar</button>
                     </div>
                     <div class="payment-row-item">
                         <span><b>Teléfono:</b> 0414-610-1249</span>
                         <button class="copy-btn-box" onclick="copiarAlPortapapeles('04146101249', 'Teléfono')"><i class="fa-solid fa-copy"></i> Copiar</button>
                     </div>
                     <div class="payment-row-item">
-                        <span><b>Rif / J:</b> 508712137</span>
-                        <button class="copy-btn-box" onclick="copiarAlPortapapeles('508712137', 'RIF')"><i class="fa-solid fa-copy"></i> Copiar</button>
+                        <span><b>C.I / V:</b> 30390225</span>
+                        <button class="copy-btn-box" onclick="copiarAlPortapapeles('30390225', 'C.I')"><i class="fa-solid fa-copy"></i> Copiar</button>
                     </div>
                 `;
             } else if (metodo === "Transferencia Bancaria") {
@@ -1441,16 +1441,16 @@
                         <span style="font-size: 0.82rem; color: var(--accent-blue);"><b>Monto a pagar:</b> ${formatoBs} Bs</span>
                     </div>
                     <div class="payment-row-item">
-                        <span><b>Banco:</b> Banco Nacional de Crédito</span>
-                        <button class="copy-btn-box" onclick="copiarAlPortapapeles('Banco Nacional de Crédito', 'Banco')"><i class="fa-solid fa-copy"></i> Copiar</button>
+                        <span><b>Banco:</b> Banesco</span>
+                        <button class="copy-btn-box" onclick="copiarAlPortapapeles('Banesco', 'Banco')"><i class="fa-solid fa-copy"></i> Copiar</button>
                     </div>
                     <div class="payment-row-item">
-                        <span><b>Cuenta:</b>  01910317012100168855</span>
-                        <button class="copy-btn-box" onclick="copiarAlPortapapeles('01910317012100168855', 'Nro de Cuenta')"><i class="fa-solid fa-copy"></i> Copiar</button>
+                        <span><b>Cuenta:</b>  0134-0092-01-0921024525</span>
+                        <button class="copy-btn-box" onclick="copiarAlPortapapeles('01340092010921024525', 'Nro de Cuenta')"><i class="fa-solid fa-copy"></i> Copiar</button>
                     </div>
                     <div class="payment-row-item">
-                        <span><b>Rif / J:</b> 508712137</span>
-                        <button class="copy-btn-box" onclick="copiarAlPortapapeles('508712137', 'RIF')"><i class="fa-solid fa-copy"></i> Copiar</button>
+                        <span><b>C.I / V:</b> 30390225</span>
+                        <button class="copy-btn-box" onclick="copiarAlPortapapeles('30390225', 'C.I')"><i class="fa-solid fa-copy"></i> Copiar</button>
                     </div>
                 `;
             } else {
